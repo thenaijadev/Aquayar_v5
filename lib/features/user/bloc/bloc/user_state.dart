@@ -24,3 +24,10 @@ class UserStateNameAndGenderUpdated extends UserState {
 }
 
 class UserStateIsLoading extends UserState {}
+
+class UserStateLocationUpdated extends UserState {
+  final AquayarAuthUser user;
+  const UserStateLocationUpdated({required this.user});
+  @override
+  List<Object> get props => [user];
+}

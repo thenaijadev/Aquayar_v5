@@ -15,3 +15,11 @@ class UserEventUpdateGenderAndName extends UserEvent {
     required this.gender,
   });
 }
+
+class UserEventUpdateCustomerLocation extends UserEvent {
+  final String address;
+  final String city;
+  final double tankSize;
+  UserEventUpdateCustomerLocation(
+      {required this.address, required this.tankSize, required this.city});
+}

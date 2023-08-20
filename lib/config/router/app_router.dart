@@ -3,6 +3,7 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
+import 'package:aquayar/features/user/presentation/screens/profile_details.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -28,11 +29,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const GenderScreen(),
         );
-      // case Routes.profileDetails:
-      //   var data = routeSettings.arguments as Map;
-      //   return MaterialPageRoute(
-      //     builder: (_) => ProfileDetailsScreen(data: data),
-      //   );
+      case Routes.profileDetails:
+        return MaterialPageRoute(
+          builder: (_) => ProfileDetailsScreen(),
+        );
       // case Routes.directionMap:
       //   return MaterialPageRoute(
       //     builder: (_) => const DirectionsMapScreen(),

@@ -11,4 +11,13 @@ class UserRepository {
   }) {
     return provider.updateUser(name: name, gender: gender);
   }
+
+  EitherAquayarAuthUser addLocation({
+    required String address,
+    required String city,
+    double? tankSize,
+  }) {
+    return provider.addLocation(
+        address: address, city: city, tankSize: tankSize);
+  }
 }

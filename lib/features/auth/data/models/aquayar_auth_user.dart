@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:hive/hive.dart';
+
 part 'aquayar_auth_user.g.dart';
 
 @HiveType(typeId: 0)
@@ -24,9 +26,13 @@ class AquayarAuthUser extends HiveObject {
   @HiveField(8)
   late String? gender;
   @HiveField(9)
-  late int? waterSize;
+  late double? waterSize;
   @HiveField(10)
   late String? address;
+  @HiveField(11)
+  late String? city;
+  @HiveField(12)
+  late String? addressName;
 
   AquayarAuthUser(
       {required this.authToken,
@@ -77,7 +83,7 @@ class AquayarAuthUser extends HiveObject {
     return AquayarAuthUser(
       id: data != null ? data['id'] as String : null,
       email: data != null ? data['email'] as String : null,
-      waterSize: data != null ? data["waterSize"] as int : null,
+      waterSize: data != null ? data["waterSize"] as double : null,
       isVerified: map['isVerified'] as bool?,
       userType: data['type'] as String?,
       phone: data['phoneNo'] as String?,
@@ -93,6 +99,6 @@ class AquayarAuthUser extends HiveObject {
 
   @override
   String toString() {
-    return 'AuthUser(id: $id, email: $email, isVerified: $isVerified, userType: $userType, phone: $phone, authToken: $authToken, displayName: $displayName, photoUrl: $photoUrl, gender: $gender)';
+    return 'AquayarAuthUser(id: $id, email: $email, isVerified: $isVerified, userType: $userType, phone: $phone, authToken: $authToken, displayName: $displayName, photoUrl: $photoUrl, gender: $gender, waterSize: $waterSize, address: $address, city: $city, addressName: $addressName)';
   }
 }
