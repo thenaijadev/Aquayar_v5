@@ -16,7 +16,7 @@ class AuthEventChangePassword extends AuthEvent {
   const AuthEventChangePassword({
     required this.password,
     required this.confirmPassword,
-  required  this.token,
+    required this.token,
   });
 }
 

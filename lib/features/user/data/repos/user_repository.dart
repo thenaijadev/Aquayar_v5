@@ -42,4 +42,8 @@ class UserRepository {
       otp: otp,
     );
   }
+
+  EitherAquayarAuthUser getUser() {
+    return provider.getUser();
+  }
 }

@@ -97,7 +97,7 @@ class AquayarAuthUser extends HiveObject {
       waterSize: data != null ? data["waterSize"] as double : null,
       isVerified: map['isVerified'] as bool?,
       userType: data['type'] as String?,
-      phone: data['phoneNo'] as String?,
+      phone: data != null ? data['phoneNo'] as String? : null,
       authToken: map['authToken'] as String?,
       displayName: data != null ? data['displayName'] as String? : null,
       photoUrl: map['photoUrl'] as String?,

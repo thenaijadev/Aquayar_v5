@@ -143,6 +143,38 @@ class UserProviderImplementation extends UserProvider {
   }
 
   @override
+  EitherAquayarAuthUser getUser() async {
+    try {
+      final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
+      final response = await DioClient.instance.get(
+        RoutesAndPaths.user,
+        options: Options(
+          headers: {"Authorization": "Bearer ${user.authToken}"},
+        ),
+      );
+
+      user.displayName = response["data"]["displayName"];
+      user.gender = response["data"]["gender"];
+      user.phone = response["data"]["phoneNo"];
+      user.id = response["data"]["id"];
+      user.email = response["data"]["email"];
+      user.save();
+
+      final box = AquayarBox.getAquayarUser();
+      await box.clear();
+      box.add(user);
+
+      return right(user);
+    } on DioException catch (e) {
+      final message = DioExceptionClass.fromDioError(e).errorMessage;
+
+      return left(message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
   EitherAquayarAuthUser checkOtp({
     required int otp,
   }) async {

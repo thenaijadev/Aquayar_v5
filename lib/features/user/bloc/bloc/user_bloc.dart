@@ -76,5 +76,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         });
       },
     );
+
+    on<UserEventGetUser>(
+      (event, emit) async {
+        emit(UserStateIsLoading());
+
+        final user = await repo.getUser();
+
+        user.fold((l) => emit(UserStateError(error: l)), (r) async {
+          emit(UserStateUserGotten(user: r));
+        });
+      },
+    );
   }
 }

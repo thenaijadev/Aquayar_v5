@@ -7,7 +7,6 @@ import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/auth/data/repos/auth_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -15,7 +14,6 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   AuthBloc(
     AuthRepo authRepo,
   ) : super(AuthStateInitial()) {
-    final tokenBox = Hive.box("user_token_box");
     on<AuthEventRegister>((event, emit) async {
       emit(AuthStateIsLoading());
       final String email = event.email;
@@ -63,9 +61,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
           final box = AquayarBox.getAquayarUser();
           await box.clear();
           box.add(r);
-          print(box.values.last);
           emit(AuthStateLoggedIn(user: r));
-          await tokenBox.put("token", r.authToken);
         });
       },
     );
@@ -87,7 +83,6 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
           box.add(r);
           print(box.values.last);
           emit(AuthStateLoggedIn(user: r));
-          await tokenBox.put("token", r.authToken);
         });
       },
     );
@@ -142,6 +137,25 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
         }, (r) {
           emit(AuthStatePasswordChanged());
         });
+      },
+    );
+
+    on<AuthEventForgotPassword>(
+      (event, emit) async {
+        emit(AuthStateIsLoading());
+
+        final String email = event.email;
+
+        try {
+          final user = await authRepo.forgotPassword(
+            email: email,
+          );
+          emit(AuthStatePasswordResetRequestSent());
+        } on DioException catch (error) {
+          final message = DioExceptionClass.fromDioError(error);
+
+          emit(AuthStateError(message: message.errorMessage));
+        }
       },
     );
   }

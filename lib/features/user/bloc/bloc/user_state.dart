@@ -47,3 +47,10 @@ class UserStateOtpChecked extends UserState {
   @override
   List<Object> get props => [user];
 }
+
+class UserStateUserGotten extends UserState {
+  final AquayarAuthUser user;
+  const UserStateUserGotten({required this.user});
+  @override
+  List<Object> get props => [user];
+}
