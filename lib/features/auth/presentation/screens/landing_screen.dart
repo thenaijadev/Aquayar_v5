@@ -37,6 +37,7 @@ class _LandingScreenState extends State<LandingScreen> {
           builder: (context, state) {
             return state is UserStateIsLoading
                 ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         "assets/images/logo.png",

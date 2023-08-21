@@ -87,25 +87,6 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       },
     );
 
-    on<AuthEventForgotPassword>(
-      (event, emit) async {
-        emit(AuthStateIsLoading());
-
-        final String email = event.email;
-
-        try {
-          final user = await authRepo.forgotPassword(
-            email: email,
-          );
-          emit(AuthStatePasswordResetRequestSent());
-        } on DioException catch (error) {
-          final message = DioExceptionClass.fromDioError(error);
-
-          emit(AuthStateError(message: message.errorMessage));
-        }
-      },
-    );
-
     on<AuthEventCheckOtpForPasswordChange>(
       (event, emit) async {
         emit(AuthStateIsLoading());
