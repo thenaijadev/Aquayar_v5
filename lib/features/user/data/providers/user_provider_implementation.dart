@@ -81,7 +81,7 @@ class UserProviderImplementation extends UserProvider {
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
 
       final token = user.authToken;
-      final response = await DioClient.instance.post(
+      await DioClient.instance.post(
         RoutesAndPaths.location,
         data: {
           "address": address,
