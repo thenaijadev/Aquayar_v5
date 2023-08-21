@@ -31,3 +31,14 @@ class UserStateLocationUpdated extends UserState {
   @override
   List<Object> get props => [user];
 }
+
+class UserStateRequestOtp extends UserState {}
+
+class UserStateOtpRequestSent extends UserState {
+  final AquayarAuthUser user;
+  const UserStateOtpRequestSent({required this.user});
+  @override
+  List<Object> get props => [user];
+}
+
+class UserStateOtpChecked extends UserState {}

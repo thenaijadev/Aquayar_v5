@@ -3,6 +3,7 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
+import 'package:aquayar/features/user/presentation/screens/phone_verification_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/profile_details.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,13 @@ class AppRouter {
         );
       case Routes.profileDetails:
         return MaterialPageRoute(
-          builder: (_) => ProfileDetailsScreen(),
+          builder: (_) => const ProfileDetailsScreen(),
+        );
+
+      case Routes.phoneVerification:
+        var data = routeSettings.arguments as List;
+        return MaterialPageRoute(
+          builder: (_) => PhoneVerificationScreen(data: data),
         );
       // case Routes.directionMap:
       //   return MaterialPageRoute(
@@ -67,11 +74,6 @@ class AppRouter {
       //     builder: (_) => const WaterTankScreeen(),
       //   );
 
-      // case Routes.phoneVerification:
-      //   var data = routeSettings.arguments as List;
-      //   return MaterialPageRoute(
-      //     builder: (_) => PhoneVerificationScreen(data: data),
-      //   );
       // case Routes.otp:
       //   var data = routeSettings.arguments as List;
       //   return MaterialPageRoute(

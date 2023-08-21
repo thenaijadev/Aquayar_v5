@@ -33,6 +33,12 @@ class AquayarAuthUser extends HiveObject {
   late String? city;
   @HiveField(12)
   late String? addressName;
+  @HiveField(13)
+  late double? longitude;
+  @HiveField(14)
+  late double? latitude;
+  @HiveField(15)
+  late String? countryCode;
 
   AquayarAuthUser(
       {required this.authToken,
@@ -40,8 +46,11 @@ class AquayarAuthUser extends HiveObject {
       required this.address,
       required this.waterSize,
       required this.id,
+      this.countryCode,
       this.city,
       this.addressName,
+      this.latitude,
+      this.longitude,
       required this.phone,
       required this.displayName,
       required this.email,
@@ -101,6 +110,6 @@ class AquayarAuthUser extends HiveObject {
 
   @override
   String toString() {
-    return 'AquayarAuthUser(id: $id, email: $email, isVerified: $isVerified, userType: $userType, phone: $phone, authToken: $authToken, displayName: $displayName, photoUrl: $photoUrl, gender: $gender, waterSize: $waterSize, address: $address, city: $city, addressName: $addressName)';
+    return 'AquayarAuthUser(id: $id, email: $email, isVerified: $isVerified, userType: $userType, phone: $phone, authToken: $authToken, displayName: $displayName, photoUrl: $photoUrl, gender: $gender, waterSize: $waterSize, address: $address, city: $city, addressName: $addressName, longitude: $longitude, latitude: $latitude, countryCode: $countryCode,)';
   }
 }

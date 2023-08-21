@@ -331,7 +331,6 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                     if (state is UserStateLocationUpdated) {
                       Navigator.pushNamed(context, Routes.phoneVerification,
                           arguments: [
-                            // widget.data,
                             formfieldkey_3.currentState?.value,
                             countryCode
                           ]);
@@ -352,7 +351,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                                     formKey.currentState?.validate();
                                 if (formIsValid!) {
                                   userBloc.add(UserEventUpdateCustomerLocation(
+                                    countryCode: countryCode,
                                     city: city,
+                                    phone: formfieldkey_3.currentState?.value,
                                     address: formfieldkey_1.currentState?.value,
                                     tankSize: double.parse(choice!).toDouble(),
                                   ));

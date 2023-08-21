@@ -16,8 +16,22 @@ class UserRepository {
     required String address,
     required String city,
     double? tankSize,
+    required String countryCode,
+    required String phone,
   }) {
     return provider.addLocation(
-        address: address, city: city, tankSize: tankSize);
+        countryCode: countryCode,
+        phone: phone,
+        address: address,
+        city: city,
+        tankSize: tankSize);
+  }
+
+  EitherAquayarAuthUser requestOtp({
+    required String phone,
+  }) {
+    return provider.requestOtp(
+      phone: phone,
+    );
   }
 }

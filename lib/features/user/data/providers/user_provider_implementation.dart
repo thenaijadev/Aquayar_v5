@@ -70,11 +70,12 @@ class UserProviderImplementation extends UserProvider {
   }
 
   @override
-  EitherAquayarAuthUser addLocation({
-    required String address,
-    required String city,
-    double? tankSize,
-  }) async {
+  EitherAquayarAuthUser addLocation(
+      {required String address,
+      required String city,
+      required String countryCode,
+      double? tankSize,
+      required String phone}) async {
     try {
       Position position = await getUserLocation();
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
@@ -101,8 +102,38 @@ class UserProviderImplementation extends UserProvider {
       user.city = city;
       user.addressName = "Home";
       user.waterSize = tankSize;
+      user.longitude = position.longitude;
+      user.latitude = position.latitude;
+      user.phone = phone;
+      user.countryCode = countryCode;
       user.save();
       return Right(user);
+    } on DioException catch (e) {
+      final message = DioExceptionClass.fromDioError(e).errorMessage;
+      return left(message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  EitherAquayarAuthUser requestOtp({
+    required String phone,
+  }) async {
+    try {
+      final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
+      final response = await DioClient.instance.post(
+        RoutesAndPaths.getOtp,
+        data: {
+          "phoneNo": phone,
+        },
+        options: Options(
+          headers: {"Authorization": "Bearer ${user.authToken}"},
+        ),
+      );
+      print(response);
+
+      return right(user);
     } on DioException catch (e) {
       final message = DioExceptionClass.fromDioError(e).errorMessage;
       return left(message);

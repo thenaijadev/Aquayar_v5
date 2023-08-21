@@ -19,7 +19,22 @@ class UserEventUpdateGenderAndName extends UserEvent {
 class UserEventUpdateCustomerLocation extends UserEvent {
   final String address;
   final String city;
-  final double tankSize;
-  const UserEventUpdateCustomerLocation(
-      {required this.address, required this.tankSize, required this.city});
+  final double? tankSize;
+  final String phone;
+  final String countryCode;
+  const UserEventUpdateCustomerLocation({
+    required this.address,
+    this.tankSize,
+    required this.city,
+    required this.phone,
+    required this.countryCode,
+  });
+}
+
+class UserEventGetOtp extends UserEvent {
+  final String phone;
+
+  const UserEventGetOtp({
+    required this.phone,
+  });
 }

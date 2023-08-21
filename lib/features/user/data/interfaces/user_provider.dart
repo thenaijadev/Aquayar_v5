@@ -12,6 +12,12 @@ abstract class UserProvider {
   EitherAquayarAuthUser addLocation({
     required String address,
     required String city,
+    required String countryCode,
     double? tankSize,
+    required String phone,
+  });
+
+  EitherAquayarAuthUser requestOtp({
+    required String phone,
   });
 }

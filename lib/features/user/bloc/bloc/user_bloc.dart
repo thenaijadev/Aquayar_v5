@@ -21,7 +21,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         );
 
         user.fold((l) => emit(UserStateError(error: l)), (r) {
-          print(r.toString());
           emit(UserStateNameAndGenderUpdated(user: r));
         });
       },
@@ -32,13 +31,33 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final address = event.address;
         final city = event.city;
         final tankSize = event.tankSize;
+        final phone = event.phone;
+        final countryCode = event.countryCode;
 
         final user = await repo.addLocation(
-            city: city, address: address, tankSize: tankSize);
+            countryCode: countryCode,
+            phone: phone,
+            city: city,
+            address: address,
+            tankSize: tankSize);
 
         user.fold((l) => emit(UserStateError(error: l)), (r) {
-          print(r.toString());
-          emit(UserStateNameAndGenderUpdated(user: r));
+          emit(UserStateLocationUpdated(user: r));
+        });
+      },
+    );
+
+    on<UserEventGetOtp>(
+      (event, emit) async {
+        emit(UserStateIsLoading());
+        final phone = event.phone;
+
+        final user = await repo.requestOtp(
+          phone: phone,
+        );
+
+        user.fold((l) => emit(UserStateError(error: l)), (r) {
+          emit(UserStateOtpRequestSent(user: r));
         });
       },
     );

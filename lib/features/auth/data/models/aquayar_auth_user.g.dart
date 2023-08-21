@@ -22,8 +22,11 @@ class AquayarAuthUserAdapter extends TypeAdapter<AquayarAuthUser> {
       address: fields[10] as String?,
       waterSize: fields[9] as double?,
       id: fields[0] as String?,
+      countryCode: fields[15] as String?,
       city: fields[11] as String?,
       addressName: fields[12] as String?,
+      latitude: fields[14] as double?,
+      longitude: fields[13] as double?,
       phone: fields[4] as String?,
       displayName: fields[6] as String?,
       email: fields[1] as String?,
@@ -36,7 +39,7 @@ class AquayarAuthUserAdapter extends TypeAdapter<AquayarAuthUser> {
   @override
   void write(BinaryWriter writer, AquayarAuthUser obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -62,7 +65,13 @@ class AquayarAuthUserAdapter extends TypeAdapter<AquayarAuthUser> {
       ..writeByte(11)
       ..write(obj.city)
       ..writeByte(12)
-      ..write(obj.addressName);
+      ..write(obj.addressName)
+      ..writeByte(13)
+      ..write(obj.longitude)
+      ..writeByte(14)
+      ..write(obj.latitude)
+      ..writeByte(15)
+      ..write(obj.countryCode);
   }
 
   @override
