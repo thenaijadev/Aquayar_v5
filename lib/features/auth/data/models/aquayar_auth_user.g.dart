@@ -22,15 +22,15 @@ class AquayarAuthUserAdapter extends TypeAdapter<AquayarAuthUser> {
       address: fields[10] as String?,
       waterSize: fields[9] as double?,
       id: fields[0] as String?,
+      city: fields[11] as String?,
+      addressName: fields[12] as String?,
       phone: fields[4] as String?,
       displayName: fields[6] as String?,
       email: fields[1] as String?,
       isVerified: fields[2] as bool?,
       gender: fields[8] as String?,
       userType: fields[3] as String?,
-    )
-      ..city = fields[11] as String?
-      ..addressName = fields[12] as String?;
+    );
   }
 
   @override

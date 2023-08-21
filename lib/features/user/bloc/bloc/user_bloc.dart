@@ -26,5 +26,21 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         });
       },
     );
+    on<UserEventUpdateCustomerLocation>(
+      (event, emit) async {
+        emit(UserStateIsLoading());
+        final address = event.address;
+        final city = event.city;
+        final tankSize = event.tankSize;
+
+        final user = await repo.addLocation(
+            city: city, address: address, tankSize: tankSize);
+
+        user.fold((l) => emit(UserStateError(error: l)), (r) {
+          print(r.toString());
+          emit(UserStateNameAndGenderUpdated(user: r));
+        });
+      },
+    );
   }
 }

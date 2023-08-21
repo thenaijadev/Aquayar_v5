@@ -40,6 +40,8 @@ class AquayarAuthUser extends HiveObject {
       required this.address,
       required this.waterSize,
       required this.id,
+      this.city,
+      this.addressName,
       required this.phone,
       required this.displayName,
       required this.email,

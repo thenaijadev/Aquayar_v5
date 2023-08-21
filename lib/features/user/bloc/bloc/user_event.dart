@@ -20,6 +20,6 @@ class UserEventUpdateCustomerLocation extends UserEvent {
   final String address;
   final String city;
   final double tankSize;
-  UserEventUpdateCustomerLocation(
+  const UserEventUpdateCustomerLocation(
       {required this.address, required this.tankSize, required this.city});
 }
