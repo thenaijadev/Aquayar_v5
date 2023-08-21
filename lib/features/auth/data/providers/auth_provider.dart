@@ -143,9 +143,26 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  EitherAquayarAuthUser signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  EitherAquayarAuthUser signInWithGoogle() async {
+    try {
+      final googleUser = await SuperBaseAuthProvider().signUpWithGoogle();
+
+      final response = await googleUser.fold((l) => null, (r) async {
+        final response = await DioClient.instance
+            .post(RoutesAndPaths.googleAuthSignIn, data: {
+          "profileId": r.id,
+        });
+        return AquayarAuthUser.fromJson(
+            {...response, "email": r.email, "displayName": '', "photoUrl": ""});
+      });
+
+      return right(response!);
+    } on DioException catch (e) {
+      print(e.response?.data);
+      return left(e.response?.data.to);
+    } catch (e) {
+      return left(e.toString());
+    }
   }
 
   @override

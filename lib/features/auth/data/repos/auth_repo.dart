@@ -36,7 +36,6 @@ class AuthRepo {
     );
 
     return user;
-    // AuthUser.fromApi(response);
   }
 
   Future<void> logOut() => provider.logOut();

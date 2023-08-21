@@ -3,6 +3,7 @@ import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
+import 'package:aquayar/features/auth/bloc/auth_event.dart';
 import 'package:aquayar/features/auth/bloc/auth_state.dart';
 import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/input_field_widget.dart';
 import 'package:aquayar/config/router/routes.dart';
@@ -32,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
   bool? checkBoxValue = false;
   @override
   Widget build(BuildContext context) {
-    // AuthBloc authBloc = context.watch<AuthBloc>();
+    AuthBloc authBloc = context.watch<AuthBloc>();
     return Form(
       key: formKey,
       child: Column(
@@ -175,10 +176,10 @@ class _LoginFormState extends State<LoginForm> {
                                   formKey.currentState?.validate();
 
                               if (formState!) {
-                                // authBloc.add(AuthEventLogIn(
-                                //     email: formfieldkey_1.currentState?.value,
-                                //     password:
-                                //         formfieldkey_2.currentState?.value));
+                                authBloc.add(AuthEventLogIn(
+                                    email: formfieldkey_1.currentState?.value,
+                                    password:
+                                        formfieldkey_2.currentState?.value));
                               }
                             },
                             child:
@@ -219,7 +220,7 @@ class _LoginFormState extends State<LoginForm> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 42),
             child: GestureDetector(
               onTap: () {
-                // authBloc.add(const AuthEventSignInWithGoogle());
+                authBloc.add(const AuthEventSignInWithGoogle());
               },
               child: Image.asset("assets/images/google_login.png"),
             ),
