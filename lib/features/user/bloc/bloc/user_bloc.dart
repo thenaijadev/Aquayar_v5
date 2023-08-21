@@ -61,5 +61,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         });
       },
     );
+
+    on<UserEventCheckOtp>(
+      (event, emit) async {
+        emit(UserStateIsLoading());
+        final otp = event.otp;
+
+        final user = await repo.checkOtp(
+          otp: otp,
+        );
+
+        user.fold((l) => emit(UserStateError(error: l)), (r) {
+          emit(UserStateOtpChecked(user: r));
+        });
+      },
+    );
   }
 }

@@ -141,4 +141,30 @@ class UserProviderImplementation extends UserProvider {
       return left(e.toString());
     }
   }
+
+  @override
+  EitherAquayarAuthUser checkOtp({
+    required int otp,
+  }) async {
+    try {
+      final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
+      await DioClient.instance.post(
+        RoutesAndPaths.checkOtp,
+        data: {
+          "otp": otp.toString(),
+        },
+        options: Options(
+          headers: {"Authorization": "Bearer ${user.authToken}"},
+        ),
+      );
+      user.isVerified = true;
+      user.save();
+      return right(user);
+    } on DioException catch (e) {
+      final message = DioExceptionClass.fromDioError(e).errorMessage;
+      return left("OTP invalid or expired.");
+    } catch (e) {
+      return left("OTP invalid or expired.");
+    }
+  }
 }

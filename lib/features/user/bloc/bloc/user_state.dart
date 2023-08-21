@@ -41,4 +41,9 @@ class UserStateOtpRequestSent extends UserState {
   List<Object> get props => [user];
 }
 
-class UserStateOtpChecked extends UserState {}
+class UserStateOtpChecked extends UserState {
+  final AquayarAuthUser user;
+  const UserStateOtpChecked({required this.user});
+  @override
+  List<Object> get props => [user];
+}

@@ -1,12 +1,12 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
+import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/presentation/widgets/blue_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'dart:async';
@@ -181,7 +181,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               resetTimer();
                               startTimer();
                               String number = formatPhoneNumber(
-                                  widget.data[1], widget.data[2]);
+                                  widget.data[0], widget.data[1]);
                               String newNumber = number.replaceAll("-", "");
                               userbloc.add(UserEventGetOtp(
                                 phone: newNumber,
@@ -215,13 +215,7 @@ class _OtpScreenState extends State<OtpScreen> {
               },
               builder: (context, state) {
                 return state is UserStateIsLoading
-                    ? const Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: SpinKitSpinningLines(
-                          color: Color.fromARGB(255, 4, 136, 231),
-                          size: 40.0,
-                        ),
-                      )
+                    ? const LoadingWidget()
                     : otp?.length != 4
                         ? BlueBtn(
                             enabled: otp?.length == 4,
@@ -257,5 +251,6 @@ class _OtpScreenState extends State<OtpScreen> {
 }
 
 String formatPhoneNumber(String number, String countryCode) {
+  print({number, countryCode});
   return "+$countryCode-${number.substring(1, 4)}-${number.substring(4, 7)}-${number.substring(7, number.length)}";
 }

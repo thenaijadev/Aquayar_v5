@@ -41,5 +41,5 @@ class UserEventGetOtp extends UserEvent {
 
 class UserEventCheckOtp extends UserEvent {
   final int otp;
-  UserEventCheckOtp({required this.otp});
+  const UserEventCheckOtp({required this.otp});
 }

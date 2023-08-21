@@ -34,4 +34,12 @@ class UserRepository {
       phone: phone,
     );
   }
+
+  EitherAquayarAuthUser checkOtp({
+    required int otp,
+  }) {
+    return provider.checkOtp(
+      otp: otp,
+    );
+  }
 }

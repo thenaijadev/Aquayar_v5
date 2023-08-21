@@ -3,8 +3,10 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
+import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/phone_verification_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/profile_details.dart';
+import 'package:aquayar/features/user/presentation/screens/registration_done_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -39,6 +41,17 @@ class AppRouter {
         var data = routeSettings.arguments as List;
         return MaterialPageRoute(
           builder: (_) => PhoneVerificationScreen(data: data),
+        );
+
+      case Routes.otp:
+        var data = routeSettings.arguments as List;
+        return MaterialPageRoute(
+          builder: (_) => OtpScreen(data: data),
+        );
+
+      case Routes.registrationDone:
+        return MaterialPageRoute(
+          builder: (_) => const RegistrationDoneScreen(),
         );
       // case Routes.directionMap:
       //   return MaterialPageRoute(
@@ -99,11 +112,6 @@ class AppRouter {
       // case Routes.createNewPasswordSuccessful:
       //   return MaterialPageRoute(
       //     builder: (_) => const PasswordChangeSuccessfulScreen(),
-      //   );
-
-      // case Routes.registrationDone:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const RegistrationDoneScreen(),
       //   );
 
       // case Routes.home:

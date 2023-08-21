@@ -20,4 +20,7 @@ abstract class UserProvider {
   EitherAquayarAuthUser requestOtp({
     required String phone,
   });
+  EitherAquayarAuthUser checkOtp({
+    required int otp,
+  });
 }
