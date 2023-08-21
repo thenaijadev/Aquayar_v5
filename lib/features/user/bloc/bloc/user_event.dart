@@ -38,3 +38,8 @@ class UserEventGetOtp extends UserEvent {
     required this.phone,
   });
 }
+
+class UserEventCheckOtp extends UserEvent {
+  final int otp;
+  UserEventCheckOtp({required this.otp});
+}
