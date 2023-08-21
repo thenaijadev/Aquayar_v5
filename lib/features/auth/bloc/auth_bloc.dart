@@ -39,9 +39,13 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
 
         final user = await authRepo.signUpWithGoogle();
 
-        user.fold((l) {
+        await user.fold((l) {
           emit(AuthStateError(message: l));
-        }, (r) {
+        }, (r) async {
+          final box = AquayarBox.getAquayarUser();
+          await box.clear();
+          box.add(r);
+
           emit(AuthStateRegistered(user: r));
         });
       },

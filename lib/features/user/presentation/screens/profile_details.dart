@@ -62,9 +62,14 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.white,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
-          child: Image.asset("assets/images/arrow_left_small.png"),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: Image.asset("assets/images/arrow_left_small.png"),
+          ),
         ),
       ),
       body: Column(

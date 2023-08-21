@@ -18,6 +18,7 @@ abstract class AuthProvider {
       required String token});
 
   EitherAquayarAuthUser signUpWithGoogle();
+
   EitherAquayarAuthUser signInWithGoogle();
   EitherMap checkOTP({
     required String otp,

@@ -4,6 +4,7 @@ import 'package:aquayar/config/network/dio_exception.dart';
 import 'package:aquayar/config/network/typedef.dart';
 import 'package:aquayar/features/auth/data/interfaces/auth_provider.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
+import 'package:aquayar/features/auth/data/providers/super_base_auth_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -54,30 +55,6 @@ class AuthProviderImpl implements AuthProvider {
   //   // } else {
   //   //   throw UserNotLoggedInAuthException();
   //   // }
-  // }
-
-  // @override
-  // AquayarAuthUser signUpWithGoogle() async {
-  //   try {
-  //     final googleUser = await SuperBaseAuthProvider().signUpWithGoogle();
-
-  //     final response = await googleUser.fold((l) => null, (r) async {
-  //       final response = await DioClient.instance
-  //           .post(RoutesAndPaths.googleAuthSignUp, data: {
-  //         "profileId": r.id,
-  //         "email": r.email,
-  //         "displayName": "anonymous"
-  //       });
-  //       return AquayarAuthUser.fromJson(
-  //           {...response, "email": r.email, "displayName": '', "photoUrl": ""});
-  //     });
-
-  //     return right(response!);
-  //   } on DioException catch (e) {
-  //     return left(e.toString());
-  //   } catch (e) {
-  //     return left(e.toString());
-  //   }
   // }
 
   // @override
@@ -172,8 +149,26 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  EitherAquayarAuthUser signUpWithGoogle() {
-    // TODO: implement signUpWithGoogle
-    throw UnimplementedError();
+  EitherAquayarAuthUser signUpWithGoogle() async {
+    try {
+      final googleUser = await SuperBaseAuthProvider().signUpWithGoogle();
+
+      final response = await googleUser.fold((l) => null, (r) async {
+        final response = await DioClient.instance
+            .post(RoutesAndPaths.googleAuthSignUp, data: {
+          "profileId": r.id,
+          "email": r.email,
+          "displayName": "anonymous"
+        });
+        return AquayarAuthUser.fromJson(
+            {...response, "email": r.email, "displayName": '', "photoUrl": ""});
+      });
+
+      return right(response!);
+    } on DioException catch (e) {
+      return left(e.toString());
+    } catch (e) {
+      return left(e.toString());
+    }
   }
 }

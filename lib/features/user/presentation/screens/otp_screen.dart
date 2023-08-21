@@ -251,6 +251,5 @@ class _OtpScreenState extends State<OtpScreen> {
 }
 
 String formatPhoneNumber(String number, String countryCode) {
-  print({number, countryCode});
   return "+$countryCode-${number.substring(1, 4)}-${number.substring(4, 7)}-${number.substring(7, number.length)}";
 }
