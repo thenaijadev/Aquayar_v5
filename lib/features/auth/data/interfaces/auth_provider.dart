@@ -12,10 +12,10 @@ abstract class AuthProvider {
   Future<void> logOut();
 
   EitherMap forgotPassord({required String email});
-  EitherMap changePassword(
-      {required String password,
-      required String confirmPassword,
-      required String token});
+  EitherMap changePassword({
+    required String password,
+    required String confirmPassword,
+  });
 
   EitherAquayarAuthUser signUpWithGoogle();
 

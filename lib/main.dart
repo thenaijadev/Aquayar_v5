@@ -3,6 +3,8 @@ import 'package:aquayar/config/superbase/provider/super_base_provoder_impl.dart'
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/repos/auth_repo.dart';
+import 'package:aquayar/features/orders/bloc/order_bloc.dart';
+import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/data/providers/user_provider_implementation.dart';
@@ -46,6 +48,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthBloc(AuthRepo.fromDio()),
+        ),
+        BlocProvider(
+          create: (context) => OrderBloc(OrderRepository.getProvider()),
         ),
         BlocProvider(
           create: (context) =>

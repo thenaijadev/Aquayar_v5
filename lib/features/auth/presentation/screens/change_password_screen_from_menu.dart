@@ -12,17 +12,17 @@ import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateNewPasswordScreen extends StatefulWidget {
-  const CreateNewPasswordScreen({
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({
     super.key,
   });
+  // final String token;
 
   @override
-  State<CreateNewPasswordScreen> createState() =>
-      _CreateNewPasswordScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final formfieldkey_1 = GlobalKey<FormFieldState>();
   final formfieldkey_2 = GlobalKey<FormFieldState>();
 
@@ -35,43 +35,35 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     AuthBloc authBloc = context.watch<AuthBloc>();
+
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,
       appBar: AppBar(
+          centerTitle: true,
+          title: const TextWidget(
+            text: "Create new password",
+            color: Color(0xFF20254F),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
           elevation: 0,
           backgroundColor: AppColors.white,
-          leading: Image.asset(
-            "assets/images/arrow_left_small.png",
-            width: 24,
+          leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Image.asset(
+              "assets/images/arrow_left.png",
+              width: 24,
+            ),
           )),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: TextWidget(
-              text: "Create new password",
-              color: AppColors.titleBlack,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0, top: 18, right: 30),
-            child: TextWidget(
-              text: "Your new password must be different from used passwords.",
-              color: Color(0xFF868FAD),
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
           Form(
             key: formKey,
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 58.0),
+                  padding: const EdgeInsets.only(top: 46.0),
                   child: InputFieldWidget(
                     obscureText: obscureText,
                     suffixIcon: GestureDetector(
@@ -80,12 +72,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                           obscureText = !obscureText;
                         });
                       },
-                      child: Icon(
-                        obscureText
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        color: AppColors.titleBlack,
-                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: obscureText
+                              ? Image.asset("assets/images/eye-slash.png")
+                              : Image.asset("assets/images/eye.png")),
                     ),
                     textFieldkey: formfieldkey_1,
                     label: "Enter a password",
@@ -113,12 +104,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                           obscureText = !obscureText;
                         });
                       },
-                      child: Icon(
-                        obscureText
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        color: AppColors.titleBlack,
-                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: obscureText
+                              ? Image.asset("assets/images/eye-slash.png")
+                              : Image.asset("assets/images/eye.png")),
                     ),
                     textFieldkey: formfieldkey_2,
                     label: "Confirm password",
@@ -143,7 +133,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20.0, top: 42),
+            padding: const EdgeInsets.only(bottom: 20.0, top: 40),
             child: BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is AuthStateError) {
@@ -166,6 +156,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                               onTap: () async {
                                 final formIsValid =
                                     formKey.currentState?.validate();
+
                                 if (formIsValid!) {
                                   authBloc.add(AuthEventChangePassword(
                                       password:
@@ -183,6 +174,30 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                             child:
                                 Image.asset("assets/images/continue_grey.png"),
                           );
+                // if (state is AuthStateIsLoading) {
+                //   return const Padding(
+                //     padding: EdgeInsets.only(top: 20.0),
+                //     child: SpinKitSpinningLines(
+                //       color: Color.fromARGB(255, 4, 136, 231),
+                //       size: 40.0,
+                //     ),
+                //   );
+                // }
+                // return BlueBtn(
+                //     enabled: passwordState! && confirmPasswordState!,
+                //     paddingVertical: 12,
+                //     label: TextWidget(
+                //       text: "  Send Instruction",
+                //       color: passwordState! && confirmPasswordState!
+                //           ? AppColors.white
+                //           : AppColors.inputBorder,
+                //       fontWeight: FontWeight.bold,
+                //       fontSize: 14,
+                //     ),
+                //     onPressed: () {
+
+                //       }
+                //     });
               },
             ),
           )

@@ -109,9 +109,11 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
 
         String password = event.password;
         String confirmPassword = event.confirmPassword;
-        String token = event.token;
+
         final response = await authRepo.changePassword(
-            password: password, confirmPassword: confirmPassword, token: token);
+          password: password,
+          confirmPassword: confirmPassword,
+        );
 
         response.fold((l) {
           emit(AuthStateError(message: l));

@@ -4,6 +4,7 @@ import 'package:aquayar/config/network/dio_exception.dart';
 import 'package:aquayar/config/network/typedef.dart';
 import 'package:aquayar/features/auth/data/interfaces/auth_provider.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/auth/data/providers/super_base_auth_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -115,16 +116,18 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  EitherMap changePassword(
-      {required String password,
-      required String confirmPassword,
-      required String token}) async {
+  EitherMap changePassword({
+    required String password,
+    required String confirmPassword,
+  }) async {
     try {
+      final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
+
       final response = await DioClient.instance.patch(
         RoutesAndPaths.user,
         data: {"password": password, "passwordConfirmation": confirmPassword},
         options: Options(
-          headers: {"Authorization": "Bearer $token"},
+          headers: {"Authorization": "Bearer ${user.authToken}"},
         ),
       );
       return right(response);
