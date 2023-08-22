@@ -6,9 +6,13 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
+import 'package:aquayar/features/locations/data/models/address.dart';
+import 'package:aquayar/features/locations/presentation/screens/edit_location_screen.dart';
 import 'package:aquayar/features/orders/presentation/screens/home.dart';
+import 'package:aquayar/features/locations/presentation/screens/locations.dart';
 import 'package:aquayar/features/orders/presentation/screens/menu.dart';
 import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
+import 'package:aquayar/features/locations/presentation/screens/rename_location.dart';
 import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
@@ -108,6 +112,25 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OrderWater(),
         );
+      case Routes.locations:
+        return MaterialPageRoute(
+          builder: (_) => const LocationsScreen(),
+        );
+
+      case Routes.editLocation:
+        var address = routeSettings.arguments as Address;
+
+        return MaterialPageRoute(
+          builder: (_) => EditLocation(address: address),
+        );
+
+      case Routes.renameLocation:
+        var address = routeSettings.arguments as Address;
+
+        return MaterialPageRoute(
+          builder: (_) => RenameLocation(address: address),
+        );
+
       default:
         return MaterialPageRoute(
           builder: (_) => const Center(

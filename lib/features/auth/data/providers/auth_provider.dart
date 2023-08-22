@@ -48,36 +48,6 @@ class AuthProviderImpl implements AuthProvider {
     }
   }
 
-  // @override
-  // Future<void> logOut() async {
-  //   // final user = FirebaseAuth.instance.currentUser;
-  //   // if (user != null) {
-  //   //   await FirebaseAuth.instance.signOut();
-  //   // } else {
-  //   //   throw UserNotLoggedInAuthException();
-  //   // }
-  // }
-
-  // @override
-  // AquayarAuthUser signInWithGoogle() async {
-  //   try {
-  //     final googleUser = await SuperBaseAuthProvider().signUpWithGoogle();
-
-  //     final response = await googleUser.fold((l) => null, (r) async {
-  //       final response = await DioClient.instance
-  //           .post(RoutesAndPaths.googleAuthSignIn, data: {
-  //         "profileId": r.id,
-  //       });
-  //       return AquayarAuthUser.fromJson(
-  //           {...response, "email": r.email, "displayName": '', "photoUrl": ""});
-  //     });
-
-  //     return right(response!);
-  //   } catch (e) {
-  //     return left(e.toString());
-  //   }
-  // }
-
   @override
   EitherMap forgotPassord({required String email}) async {
     try {

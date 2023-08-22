@@ -1,8 +1,8 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/input_field_widget.dart';
-import 'package:aquayar/features/orders/data/models/address.dart';
-import 'package:aquayar/features/orders/data/models/address_box.dart';
+import 'package:aquayar/features/locations/data/models/address.dart';
+import 'package:aquayar/features/locations/data/models/address_box.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 
 import 'package:flutter/material.dart';
@@ -73,6 +73,8 @@ class _AddressFormState extends State<AddressForm> {
                   width: 170,
                   height: 35,
                   decoration: BoxDecoration(
+                      color:
+                          isHome ? const Color(0xFFFEF1E2) : Colors.transparent,
                       borderRadius: BorderRadius.circular(200),
                       border: Border.all(
                         width: 1,
@@ -128,11 +130,14 @@ class _AddressFormState extends State<AddressForm> {
                   width: 170,
                   height: 35,
                   decoration: BoxDecoration(
+                      color: !isHome
+                          ? const Color(0xFFF5FDD7)
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(200),
                       border: Border.all(
                         width: 1,
                         color: !isHome
-                            ? const Color(0xff623903)
+                            ? const Color(0xFF85A407)
                             : const Color(0xff868FAE),
                       )),
                   child: Padding(
@@ -167,7 +172,12 @@ class _AddressFormState extends State<AddressForm> {
                                 ),
                               );
                             }),
-                        !isHome ? const Icon(Icons.check) : const Text(""),
+                        !isHome
+                            ? const Icon(
+                                Icons.check,
+                                color: Color(0xFF85A407),
+                              )
+                            : const Text(""),
                       ],
                     ),
                   ),

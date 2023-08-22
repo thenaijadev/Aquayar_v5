@@ -1,4 +1,4 @@
-import 'package:aquayar/features/orders/data/models/address.dart';
+import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Boxes {

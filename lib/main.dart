@@ -4,7 +4,7 @@ import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/repos/auth_repo.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
-import 'package:aquayar/features/orders/data/models/address.dart';
+import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';

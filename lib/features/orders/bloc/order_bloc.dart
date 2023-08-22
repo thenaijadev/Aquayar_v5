@@ -1,4 +1,4 @@
-import 'package:aquayar/features/orders/data/provider/location_provider.dart';
+import 'package:aquayar/features/locations/data/providers/location_provider.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
