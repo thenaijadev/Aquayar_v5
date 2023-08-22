@@ -6,8 +6,9 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
-import 'package:aquayar/features/help&Support/presentation/screens/delete_account.dart';
+import 'package:aquayar/features/delete_account/presentation/screens/delete_account.dart';
 import 'package:aquayar/features/help&Support/presentation/screens/help_and_support.dart';
+import 'package:aquayar/features/help&Support/presentation/screens/help_and_support_no_tickets.dart';
 import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/locations/presentation/screens/edit_location_screen.dart';
 import 'package:aquayar/features/orders/presentation/screens/home.dart';
@@ -141,6 +142,11 @@ class AppRouter {
       case Routes.deleteAccount:
         return MaterialPageRoute(
           builder: (_) => const DeleteAccount(),
+        );
+
+      case Routes.helpSupportNoTicket:
+        return MaterialPageRoute(
+          builder: (_) => const HelpSupportTickets(),
         );
       default:
         return MaterialPageRoute(

@@ -1,5 +1,5 @@
 import 'package:aquayar/core/widgets/text_widget.dart';
-import 'package:aquayar/features/help&Support/presentation/screens/delete_check_item.dart';
+import 'package:aquayar/features/delete_account/presentation/widgets/delete_check_item.dart';
 import 'package:flutter/material.dart';
 
 class DeleteAccount extends StatelessWidget {

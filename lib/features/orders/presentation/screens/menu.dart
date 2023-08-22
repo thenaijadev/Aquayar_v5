@@ -293,7 +293,10 @@ class _MenuState extends State<Menu> {
                           label: "Help & Support"),
                       const HorizontalRuleWidget(),
                       MenuItemWidget(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, Routes.helpSupportNoTicket);
+                          },
                           image: "assets/images/message.png",
                           label: "Give Feedback"),
                     ],
