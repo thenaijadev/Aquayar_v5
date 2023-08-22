@@ -8,3 +8,11 @@ sealed class OrderEvent extends Equatable {
 }
 
 class OrderEventGetOrders extends OrderEvent {}
+
+class OrderEventGetNearestDriver extends OrderEvent {
+  const OrderEventGetNearestDriver(
+      {required this.waterSize, required this.address});
+
+  final double waterSize;
+  final String address;
+}

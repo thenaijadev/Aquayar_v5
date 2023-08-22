@@ -11,4 +11,18 @@ class OrderRepository {
   EitherList getAllOrders() async {
     return await provider.getAllOrders();
   }
+
+  EitherDriver getNearestDriver({
+    required double waterSize,
+    required double longitude,
+    required double latitude,
+  }) async {
+    final response = await provider.getNearestDriver(
+      waterSize: waterSize,
+      longitude: longitude,
+      latitude: latitude,
+    );
+
+    return response;
+  }
 }

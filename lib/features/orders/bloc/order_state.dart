@@ -24,3 +24,15 @@ class OrderStateOrderRetrieved extends OrderState {
   @override
   List<Object> get props => [orders];
 }
+
+class OrderStateGetNearestDriverFound extends OrderState {
+  const OrderStateGetNearestDriverFound({required this.driver});
+  final Driver driver;
+}
+
+class OrderStateGetNearestDriverIsLoading extends OrderState {}
+
+class OrderStateGetNearestDiverError extends OrderState {
+  const OrderStateGetNearestDiverError({required this.error});
+  final String error;
+}

@@ -8,6 +8,7 @@ import 'package:aquayar/features/auth/presentation/screens/registration_screen.d
 import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
 import 'package:aquayar/features/orders/presentation/screens/home.dart';
 import 'package:aquayar/features/orders/presentation/screens/menu.dart';
+import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
 import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
@@ -101,6 +102,11 @@ class AppRouter {
       case Routes.waterTank:
         return MaterialPageRoute(
           builder: (_) => const WaterTankScreeen(),
+        );
+
+      case Routes.orderWater:
+        return MaterialPageRoute(
+          builder: (_) => const OrderWater(),
         );
       default:
         return MaterialPageRoute(
