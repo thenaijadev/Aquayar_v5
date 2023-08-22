@@ -286,7 +286,9 @@ class _MenuState extends State<Menu> {
                   child: Column(
                     children: [
                       MenuItemWidget(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.helpAndSupport);
+                          },
                           image: "assets/images/chat.png",
                           label: "Help & Support"),
                       const HorizontalRuleWidget(),
@@ -300,30 +302,34 @@ class _MenuState extends State<Menu> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 14.0),
-                child: OutlinedContainer(
-                  borderRadius: 24,
-                  color: const Color(0xFFFAFAFA),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset("assets/images/bin.png"),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            const TextWidget(
-                              text: "Delete Account",
-                              color: Color(0xFFC0362C),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ],
-                        ),
-                        Image.asset("assets/images/chevron_right.png"),
-                      ],
+                child: GestureDetector(
+                  onTap: () =>
+                      Navigator.pushNamed(context, Routes.deleteAccount),
+                  child: OutlinedContainer(
+                    borderRadius: 24,
+                    color: const Color(0xFFFAFAFA),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 14.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset("assets/images/bin.png"),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              const TextWidget(
+                                text: "Delete Account",
+                                color: Color(0xFFC0362C),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ],
+                          ),
+                          Image.asset("assets/images/chevron_right.png"),
+                        ],
+                      ),
                     ),
                   ),
                 ),
