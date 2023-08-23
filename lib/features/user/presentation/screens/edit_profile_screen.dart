@@ -11,7 +11,6 @@ import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/presentation/widgets/radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({
@@ -183,10 +182,10 @@ class _EditProfileState extends State<EditProfile> {
                                     final formIsValid =
                                         formKey.currentState?.validate();
                                     if (formIsValid!) {
-                                      final tokenBox =
-                                          Hive.box("user_token_box");
-                                      // ignore: unused_local_variable
-                                      final token = tokenBox.get("token");
+                                      // final tokenBox =
+                                      //     Hive.box("user_token_box");
+                                      // // ignore: unused_local_variable
+                                      // final token = tokenBox.get("token");
 
                                       authBloc.add(UserEventUpdateGenderAndName(
                                           name: formfieldkey_1
