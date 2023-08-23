@@ -11,6 +11,7 @@ import 'package:aquayar/features/help&Support/presentation/screens/help_and_supp
 import 'package:aquayar/features/help&Support/presentation/screens/help_and_support_no_tickets.dart';
 import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/locations/presentation/screens/edit_location_screen.dart';
+import 'package:aquayar/features/orders/presentation/screens/confirm_details.dart';
 import 'package:aquayar/features/orders/presentation/screens/home.dart';
 import 'package:aquayar/features/locations/presentation/screens/locations.dart';
 import 'package:aquayar/features/orders/presentation/screens/menu.dart';
@@ -147,6 +148,13 @@ class AppRouter {
       case Routes.helpSupportNoTicket:
         return MaterialPageRoute(
           builder: (_) => const HelpSupportTickets(),
+        );
+
+      case Routes.confirmDetails:
+        var data = routeSettings.arguments as Map<String, dynamic>;
+
+        return MaterialPageRoute(
+          builder: (_) => ConfirmDetails(data: data),
         );
       default:
         return MaterialPageRoute(

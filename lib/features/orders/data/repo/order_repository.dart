@@ -25,4 +25,18 @@ class OrderRepository {
 
     return response;
   }
+
+  EitherMap getPrice(
+      {required double waterSize,
+      required String token,
+      required String startLocation,
+      required String endLocation}) async {
+    final response = await provider.getPrice(
+        waterSize: waterSize,
+        token: token,
+        startLocation: startLocation,
+        endLocation: endLocation);
+
+    return response;
+  }
 }

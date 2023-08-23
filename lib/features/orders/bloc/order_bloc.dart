@@ -44,5 +44,25 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         location?["geometry"]["location"]["lat"],
       });
     });
+
+    on<OrderEventGetPrice>((event, emit) async {
+      emit(OrderStateIsLoading());
+      final String token = event.token;
+      final double waterSize = event.waterSize;
+      final String startLocation = event.startLocation;
+      final String endLocation = event.endLocation;
+
+      final response = await repo.getPrice(
+          startLocation: startLocation,
+          endLocation: endLocation,
+          waterSize: waterSize,
+          token: token);
+      response.fold((l) => emit(OrderStateGetPriceError(error: l)), (r) {
+        emit(OrderStatePriceRetrieved(
+            distance: r["distance"],
+            price: r["data"]["price"],
+            time: r["time"]));
+      });
+    });
   }
 }

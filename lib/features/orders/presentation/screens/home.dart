@@ -1,4 +1,6 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
+import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/no_order_widget.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/order_widget.dart';
@@ -7,6 +9,7 @@ import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -19,12 +22,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool noOrder = false;
-
+  late Box<AquayarAuthUser> authUserBox;
+  late Box<Address> addressBox;
   @override
   void initState() {
     final OrderBloc orderBloc = context.read<OrderBloc>();
     orderBloc.add(OrderEventGetOrders());
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    authUserBox.close();
+    addressBox.close();
+    super.dispose();
   }
 
   @override
