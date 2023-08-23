@@ -37,12 +37,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       }, (r) {
         emit(OrderStateGetNearestDriverFound(driver: r));
       });
-
-      print({
-        waterSize,
-        location?["geometry"]["location"]["lng"],
-        location?["geometry"]["location"]["lat"],
-      });
     });
 
     on<OrderEventGetPrice>((event, emit) async {

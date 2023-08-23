@@ -185,6 +185,7 @@ class _EditProfileState extends State<EditProfile> {
                                     if (formIsValid!) {
                                       final tokenBox =
                                           Hive.box("user_token_box");
+                                      // ignore: unused_local_variable
                                       final token = tokenBox.get("token");
 
                                       authBloc.add(UserEventUpdateGenderAndName(

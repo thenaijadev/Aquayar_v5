@@ -1,6 +1,7 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/features/auth/presentation/widgets/registration_screen_widgets.dart/registration_form.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -10,6 +11,12 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

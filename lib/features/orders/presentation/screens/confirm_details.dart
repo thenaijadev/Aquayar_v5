@@ -29,8 +29,6 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}",
         token: widget.data["token"], waterSize: widget.data["waterSize"]));
 
-    LocationProvider().getTransitTime(widget.data["address"],
-        "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}");
     super.initState();
   }
 
@@ -40,6 +38,8 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
   Widget build(BuildContext context) {
     final orderBloc = context.read<OrderBloc>();
 
+    LocationProvider().getTransitTime(widget.data["address"],
+        "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}");
     return Scaffold(
       appBar: AppBar(
           title: Padding(

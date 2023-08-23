@@ -122,6 +122,7 @@ class UserProviderImplementation extends UserProvider {
   }) async {
     try {
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
+      // ignore: unused_local_variable
       final response = await DioClient.instance.post(
         RoutesAndPaths.getOtp,
         data: {
@@ -131,7 +132,6 @@ class UserProviderImplementation extends UserProvider {
           headers: {"Authorization": "Bearer ${user.authToken}"},
         ),
       );
-      print(response);
 
       return right(user);
     } on DioException catch (e) {
@@ -192,8 +192,7 @@ class UserProviderImplementation extends UserProvider {
       user.isVerified = true;
       user.save();
       return right(user);
-    } on DioException catch (e) {
-      final message = DioExceptionClass.fromDioError(e).errorMessage;
+    } on DioException {
       return left("OTP invalid or expired.");
     } catch (e) {
       return left("OTP invalid or expired.");
