@@ -1,5 +1,6 @@
 import 'package:aquayar/config/router/app_router.dart';
 import 'package:aquayar/config/superbase/provider/super_base_provoder_impl.dart';
+import 'package:aquayar/core/services/locator.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/repos/auth_repo.dart';
@@ -28,17 +29,18 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await Hive.initFlutter();
+  Hive.registerAdapter(AddressAdapter());
+
   Hive.registerAdapter(AquayarAuthUserAdapter());
 
   await Hive.openBox<AquayarAuthUser>("aquayarAuthUser");
-  Hive.registerAdapter(AddressAdapter());
 
   await Hive.openBox<Address>("address");
   final superBase = SuperBaseRepo(provider: SuperBaseProviderImpl());
   superBase.initialiseSuperbase();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
-
+  setUp();
   runApp(const MyApp());
 }
 
