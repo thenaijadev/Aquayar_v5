@@ -54,9 +54,9 @@ class OrderStateGetPriceError extends OrderState {
 }
 
 class OrderEventGetPrice extends OrderEvent {
-  const OrderEventGetPrice(
-    this.startLocation,
-    this.endLocation, {
+  const OrderEventGetPrice({
+    required this.startLocation,
+    required this.endLocation,
     required this.token,
     required this.waterSize,
   });

@@ -18,7 +18,7 @@ class LocationProvider {
             true) {
           var jsonData = json.decode(response.body);
           var placeId = jsonData["candidates"][0]["place_id"] as String;
-          logger.e(placeId);
+
           return placeId;
         } else {
           logger.e('Response does not contain JSON data.');
@@ -46,7 +46,7 @@ class LocationProvider {
           var jsonData = json.decode(response.body);
 
           var results = jsonData['result'] as Map<String, dynamic>;
-          logger.i(results["geometry"]["location"]);
+
           return results;
         } else {
           logger.e('Response does not contain JSON data.');
@@ -63,7 +63,7 @@ class LocationProvider {
   Future<Map<String, dynamic>?> getDirections(
       String origin, String destination) async {
     String url =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&key=$key";
+        "https://maps.googleapis.com/maps/api/directions/json?origin=lekki&destination=ikeja&key=$key";
 
     try {
       var response = await http.get(Uri.parse(url));
@@ -108,7 +108,6 @@ class LocationProvider {
         if (response.headers['content-type']?.contains('application/json') ==
             true) {
           var jsonData = json.decode(response.body);
-
           return jsonData["rows"][0]["elements"][0]["duration"]["text"];
         } else {
           logger.e('Response does not contain JSON data.');
@@ -117,7 +116,7 @@ class LocationProvider {
         logger.e('HTTP request failed with status: ${response.statusCode}');
       }
     } catch (e) {
-      logger.e(e.toString());
+      // logger.e(e.toString());
     }
     return null;
   }
@@ -144,7 +143,7 @@ class LocationProvider {
         logger.e('HTTP request failed with status: ${response.statusCode}');
       }
     } catch (e) {
-      logger.e(e.toString());
+      // logger.e(e.toString());
     }
     return null;
   }

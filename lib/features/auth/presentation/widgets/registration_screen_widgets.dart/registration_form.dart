@@ -98,10 +98,7 @@ class _RegisterationFormState extends ConsumerState<RegisterationForm> {
           ),
           BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
-              logger.e(state);
               if (state is AuthStateRegistered) {
-                logger.e(state.getUser.toString());
-
                 Navigator.pushNamed(context, Routes.gender,
                     arguments: state.getUser);
               } else if (state is AuthStateError) {

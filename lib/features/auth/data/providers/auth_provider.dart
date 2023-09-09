@@ -131,7 +131,6 @@ class AuthProviderImpl implements AuthProvider {
 
       return right(response!);
     } on DioException catch (e) {
-      print(e.response?.data);
       return left(e.response?.data.to);
     } catch (e) {
       return left(e.toString());

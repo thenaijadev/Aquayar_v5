@@ -65,18 +65,22 @@ class OrderProviderImplementation {
       required String startLocation,
       required String endLocation}) async {
     try {
-      var directions =
-          await LocationProvider().getDirections(startLocation, endLocation);
+      List<String> parts = endLocation.split(',');
+
+      // var directions =
+      //     await LocationProvider().getDirections(startLocation, endLocation);
+      var data = await LocationProvider().getPlace(startLocation);
 
       final time = await LocationProvider().getTransitTime(
-          "${directions?["start_location"]["lat"]},${directions?["start_location"]["lng"]}",
-          "${directions?["end_location"]["lat"]},${directions?["end_location"]["lng"]}");
+          "${data?["geometry"]["location"]["lat"]},${data?["geometry"]["location"]["lng"]}",
+          "${double.parse(parts[1])},${double.parse(parts[0])}");
 
       final distance = Geolocator.distanceBetween(
-          directions?["start_location"]["lat"],
-          directions?["start_location"]["lng"],
-          directions?["end_location"]["lat"],
-          directions?["end_location"]["lng"]);
+        data?["geometry"]["location"]["lat"],
+        data?["geometry"]["location"]["lng"],
+        double.parse(parts[1]),
+        double.parse(parts[0]),
+      );
 
       final response = await DioClient.instance.post(
         RoutesAndPaths.getPrice,

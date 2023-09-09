@@ -81,7 +81,6 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
           final box = AquayarBox.getAquayarUser();
           await box.clear();
           box.add(r);
-          print(box.values.last);
           emit(AuthStateLoggedIn(user: r));
         });
       },

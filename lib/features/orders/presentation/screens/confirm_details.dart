@@ -24,9 +24,12 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
   @override
   void initState() {
     final orderBloc = context.read<OrderBloc>();
-    orderBloc.add(OrderEventGetPrice(widget.data["address"],
-        "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}",
-        token: widget.data["token"], waterSize: widget.data["waterSize"]));
+    orderBloc.add(OrderEventGetPrice(
+        startLocation: widget.data["address"],
+        endLocation:
+            "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}",
+        token: widget.data["token"],
+        waterSize: widget.data["waterSize"]));
 
     super.initState();
   }
@@ -35,7 +38,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
   late Map<String, dynamic> theData;
   @override
   Widget build(BuildContext context) {
-    // final orderBloc = context.read<OrderBloc>();
+    final orderBloc = context.read<OrderBloc>();
 
     LocationProvider().getTransitTime(widget.data["address"],
         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}");
@@ -186,13 +189,13 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                 scaleX: 1.07,
                                 child: GestureDetector(
                                   onTap: () {
-                                    // orderBloc.add(OrderEventGetOrderDetails(
-                                    //     token: widget.data["token"],
-                                    //     waterSize: widget.data["waterSize"],
-                                    //     startLocation: widget.data["address"],
-                                    //     endLocation: "6.8429,7.3733",
-                                    //     price: state.price.toDouble(),
-                                    //     driver: widget.data["driver"].id));
+                                    orderBloc.add(OrderEventGetOrderDetails(
+                                        token: widget.data["token"],
+                                        waterSize: widget.data["waterSize"],
+                                        startLocation: widget.data["address"],
+                                        endLocation: "6.8429,7.3733",
+                                        price: state.price.toDouble(),
+                                        driver: widget.data["driver"].id));
                                     // Navigator.pushNamed(
                                     //     context, Routes.directionMap);
                                   },
@@ -203,7 +206,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                               )
                             ],
                           );
-                        } else if (state is OrderEventGetOrderDetails) {
+                        } else if (state is OrderStateOrderCreated) {
                           return Column(
                             children: [
                               showMore

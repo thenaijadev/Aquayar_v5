@@ -28,7 +28,6 @@ import 'package:flutter/material.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
-    // logger.i("This is the route: ${routeSettings.name}");
     switch (routeSettings.name) {
       case Routes.landing:
         return MaterialPageRoute(

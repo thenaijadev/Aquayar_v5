@@ -367,7 +367,6 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                   AquayarBox.getAquayarUser().values.last;
 
               if (state is OrderStateGetNearestDriverFound) {
-                print(state.driver.toString());
                 Navigator.pushNamed(context, Routes.confirmDetails, arguments: {
                   "address": controller.text,
                   "driver": state.driver,
@@ -375,7 +374,6 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                   "token": user.authToken,
                 });
               } else if (state is OrderStateGetNearestDiverError) {
-                print(state.error);
                 // InfoSnackBar.showErrorSnackBar(context, state.error);
               }
             },

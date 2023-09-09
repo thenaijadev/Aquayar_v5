@@ -54,7 +54,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       response.fold((l) => emit(OrderStateGetPriceError(error: l)), (r) {
         emit(OrderStatePriceRetrieved(
             distance: r["distance"],
-            price: r["data"]["price"],
+            price: r["data"]["price"] ?? 200,
             time: r["time"]));
       });
     });
