@@ -1,8 +1,8 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/loading_widget.dart';
-import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/order_water_screen_widgets/address_form.dart';
@@ -10,6 +10,8 @@ import 'package:aquayar/features/user/presentation/widgets/rounded_progress_pain
 import 'package:aquayar/features/user/presentation/widgets/water_tank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../auth/data/models/aquayar_auth_user.dart';
 
 class OrderWater extends StatefulWidget {
   const OrderWater({super.key});
@@ -361,18 +363,20 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
           ),
           BlocConsumer<OrderBloc, OrderState>(
             listener: (context, state) {
-              // final AquayarAuthUser user =
-              //     AquayarBox.getAquayarUser().values.last;
+              final AquayarAuthUser user =
+                  AquayarBox.getAquayarUser().values.last;
 
               if (state is OrderStateGetNearestDriverFound) {
+                print(state.driver.toString());
                 Navigator.pushNamed(context, Routes.confirmDetails, arguments: {
                   "address": controller.text,
                   "driver": state.driver,
                   "waterSize": liters,
-                  // "token": user.authToken,
+                  "token": user.authToken,
                 });
               } else if (state is OrderStateGetNearestDiverError) {
-                InfoSnackBar.showErrorSnackBar(context, state.error);
+                print(state.error);
+                // InfoSnackBar.showErrorSnackBar(context, state.error);
               }
             },
             builder: (context, state) {

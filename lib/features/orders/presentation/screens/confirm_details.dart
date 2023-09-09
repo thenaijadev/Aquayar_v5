@@ -7,7 +7,6 @@ import 'package:aquayar/features/orders/presentation/widgets/confirm_details_wid
 import 'package:aquayar/features/orders/presentation/widgets/confirm_details_widgets.dart/buttom_outline_container_one_map_screen.dart';
 import 'package:aquayar/features/orders/presentation/widgets/confirm_details_widgets.dart/direction_map_less.dart';
 import 'package:aquayar/features/orders/presentation/widgets/confirm_details_widgets.dart/direction_map_more.dart';
-import 'package:aquayar/features/orders/presentation/widgets/confirm_details_widgets.dart/map.dart';
 import 'package:aquayar/features/orders/presentation/widgets/confirm_details_widgets.dart/payment_container_map_screen.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +24,9 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
   @override
   void initState() {
     final orderBloc = context.read<OrderBloc>();
-    // orderBloc.add(OrderEventGetPrice(widget.data["address"],
-    //     "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}",
-    //     token: widget.data["token"], waterSize: widget.data["waterSize"]));
+    orderBloc.add(OrderEventGetPrice(widget.data["address"],
+        "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}",
+        token: widget.data["token"], waterSize: widget.data["waterSize"]));
 
     super.initState();
   }
@@ -36,7 +35,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
   late Map<String, dynamic> theData;
   @override
   Widget build(BuildContext context) {
-    final orderBloc = context.read<OrderBloc>();
+    // final orderBloc = context.read<OrderBloc>();
 
     LocationProvider().getTransitTime(widget.data["address"],
         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}");
@@ -96,11 +95,11 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                 ),
                 borderRadius: BorderRadius.circular(24),
               ),
-              child: MapSample(
-                  // onTap:(){},
-                  startPosition: widget.data["address"],
-                  endPosition:
-                      "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}"),
+              // child: MapSample(
+              //     // onTap:(){},
+              //     startPosition: widget.data["address"],
+              //     endPosition:
+              //         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}"),
             ),
           ),
           Column(
