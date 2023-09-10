@@ -1,6 +1,7 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/help&Support/presentation/widgets/horizontal_line.dart';
+import 'package:aquayar/features/orders/data/models/driver_model.dart';
 import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,12 @@ class DirectionMapScreenLess extends StatefulWidget {
       {super.key,
       required this.showMoreOnTap,
       required this.data,
+      required this.driver,
       required this.order});
   final void Function() showMoreOnTap;
   final Map<String, dynamic> data;
   final OrderModel order;
-
+  final DriverModel driver;
   @override
   State<DirectionMapScreenLess> createState() => _DirectionMapScreenLessState();
 }
@@ -108,8 +110,8 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TextWidget(
-                      text: "Henry Immanuel",
+                    TextWidget(
+                      text: widget.driver.displayName,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -123,9 +125,9 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                         const SizedBox(
                           width: 5,
                         ),
-                        const TextWidget(
-                          text: 'ABJ-567-EA',
-                          color: Color(0xFF868FAD),
+                        TextWidget(
+                          text: widget.driver.licensePlate,
+                          color: const Color(0xFF868FAD),
                           fontSize: 16,
                         ),
                         const SizedBox(
@@ -145,15 +147,15 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                       children: [
                         Image.asset("assets/images/star_small.png"),
                         const SizedBox(width: 5),
-                        const TextWidget(
-                          text: "4.3",
+                        TextWidget(
+                          text: "${widget.driver.rating}",
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
-                    const TextWidget(
-                      text: "(246) trips",
+                    TextWidget(
+                      text: "(${widget.driver.trips}) trips",
                       fontSize: 14,
                     ),
                   ],

@@ -216,6 +216,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                             children: [
                               showMore
                                   ? DirectionMapScreenMore(
+                                      driver: state.driver,
                                       order: state.order,
                                       data: theData,
                                       showLessOnMap: () {
@@ -226,6 +227,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                   : DirectionMapScreenLess(
                                       order: state.order,
                                       data: theData,
+                                      driver: state.driver,
                                       showMoreOnTap: () {
                                         setState(() {
                                           showMore = true;

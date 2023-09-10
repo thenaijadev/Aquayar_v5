@@ -1,6 +1,7 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/help&Support/presentation/widgets/horizontal_line.dart';
+import 'package:aquayar/features/orders/data/models/driver_model.dart';
 import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 
@@ -9,12 +10,14 @@ import 'package:flutter/material.dart';
 class DirectionMapScreenMore extends StatefulWidget {
   const DirectionMapScreenMore(
       {super.key,
+      required this.driver,
       required this.showLessOnMap,
       required this.data,
       required this.order});
   final void Function() showLessOnMap;
   final Map<String, dynamic> data;
   final OrderModel order;
+  final DriverModel driver;
 
   @override
   State<DirectionMapScreenMore> createState() => _DirectionMapScreenMoreState();

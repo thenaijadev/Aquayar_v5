@@ -93,6 +93,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         orderDetails.fold((l) => null, (r) {
           final OrderModel order = OrderModel.fromMap(r);
           final DriverModel driver = DriverModel.fromMap(r);
+          print(driver.toString());
           emit(OrderStateOrderDetailsRetrieved(order: order, driver: driver));
         });
       }

@@ -13,10 +13,10 @@ class DriverModel {
 
   final String id;
   final String displayName;
-  final double rating;
+  final int rating;
   final String licensePlate;
   final String mainColor;
-  final String selfieImage;
+  final String? selfieImage;
   final int trips;
 
   Map<String, dynamic> toMap() {
@@ -35,10 +35,10 @@ class DriverModel {
     return DriverModel(
       id: data['id'] as String,
       displayName: data['displayName'] as String,
-      rating: data['rating'] as double,
+      rating: data['rating'] as int,
       licensePlate: data['licensePlate'] as String,
       mainColor: data['mainColor'] as String,
-      selfieImage: data['selfie'] as String,
+      selfieImage: data['selfie'] as String?,
       trips: data['trips'] as int,
     );
   }
