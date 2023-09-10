@@ -60,7 +60,7 @@ class ButtomMapScreenOne extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                width: 20,
+                width: 60,
               ),
               Flexible(
                 child: Row(
@@ -119,7 +119,7 @@ class ButtomMapScreenOne extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                width: 30,
+                width: 100,
               ),
               Column(
                 children: [

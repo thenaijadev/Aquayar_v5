@@ -90,20 +90,27 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 26),
             child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColors.inputBorder,
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.disabledBtn,
+                  border: Border.all(
+                    color: AppColors.inputBorder,
+                  ),
+                  borderRadius: BorderRadius.circular(24),
                 ),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              // child: MapSample(
-              //     // onTap:(){},
-              //     startPosition: widget.data["address"],
-              //     endPosition:
-              //         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}"),
-            ),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 390.0),
+                  child: Transform.scale(
+                      scale: .6,
+                      child: Image.asset("assets/images/map_update_tag.png")),
+                )
+                // child: MapSample(
+                //     // onTap:(){},
+                //     startPosition: widget.data["address"],
+                //     endPosition:
+                //         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}"),
+                ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
