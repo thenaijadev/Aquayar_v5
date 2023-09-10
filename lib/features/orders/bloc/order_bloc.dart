@@ -1,4 +1,5 @@
 import 'package:aquayar/features/locations/data/providers/location_provider.dart';
+import 'package:aquayar/features/orders/data/models/driver_model.dart';
 import 'package:aquayar/features/orders/data/models/order.dart';
 import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
@@ -91,8 +92,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             token: token, orderId: state.order.orderId);
         orderDetails.fold((l) => null, (r) {
           final OrderModel order = OrderModel.fromMap(r);
-
-          emit(OrderStateOrderDetailsRetrieved(order: order));
+          final DriverModel driver = DriverModel.fromMap(r);
+          emit(OrderStateOrderDetailsRetrieved(order: order, driver: driver));
         });
       }
     });

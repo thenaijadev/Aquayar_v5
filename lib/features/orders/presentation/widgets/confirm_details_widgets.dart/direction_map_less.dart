@@ -1,14 +1,19 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/help&Support/presentation/widgets/horizontal_line.dart';
+import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:flutter/material.dart';
 
 class DirectionMapScreenLess extends StatefulWidget {
   const DirectionMapScreenLess(
-      {super.key, required this.showMoreOnTap, required this.data});
+      {super.key,
+      required this.showMoreOnTap,
+      required this.data,
+      required this.order});
   final void Function() showMoreOnTap;
   final Map<String, dynamic> data;
+  final OrderModel order;
 
   @override
   State<DirectionMapScreenLess> createState() => _DirectionMapScreenLessState();

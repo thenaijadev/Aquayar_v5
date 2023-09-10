@@ -73,6 +73,8 @@ class OrderStateOrderCreated extends OrderState {
 }
 
 class OrderStateOrderDetailsRetrieved extends OrderState {
-  const OrderStateOrderDetailsRetrieved({required this.order});
+  const OrderStateOrderDetailsRetrieved(
+      {required this.order, required this.driver});
   final OrderModel order;
+  final DriverModel driver;
 }

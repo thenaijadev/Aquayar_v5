@@ -211,11 +211,12 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                               )
                             ],
                           );
-                        } else if (state is OrderStateOrderCreated) {
+                        } else if (state is OrderStateOrderDetailsRetrieved) {
                           return Column(
                             children: [
                               showMore
                                   ? DirectionMapScreenMore(
+                                      order: state.order,
                                       data: theData,
                                       showLessOnMap: () {
                                         setState(() {
@@ -223,6 +224,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                         });
                                       })
                                   : DirectionMapScreenLess(
+                                      order: state.order,
                                       data: theData,
                                       showMoreOnTap: () {
                                         setState(() {
