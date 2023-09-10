@@ -14,8 +14,8 @@ class Order {
   final String customerId;
   final String driverId;
   final int waterSize;
-  final double price;
-  final double distance;
+  final String price;
+  final String distance;
 
   @override
   String toString() {
@@ -27,8 +27,8 @@ class Order {
     String? customerId,
     String? driverId,
     int? waterSize,
-    double? price,
-    double? distance,
+    String? price,
+    String? distance,
   }) {
     return Order(
       orderId ?? this.orderId,
@@ -58,8 +58,8 @@ class Order {
       data['customer'] as String,
       data["driver"] as String,
       data['waterSize'] as int,
-      data['price'] as double,
-      data['distance'] as double,
+      data['price'] as String,
+      data['distance'] as String,
     );
   }
 

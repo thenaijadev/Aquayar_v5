@@ -164,18 +164,24 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                     child: OutlinedContainer(
                       borderRadius: 25,
                       padding: const EdgeInsets.only(
-                        top: 0,
+                        top: 5,
+                        left: 10,
                         bottom: 20,
                       ),
                       onTap: () {},
                       child: Row(
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.only(left: 10.0, bottom: 21.5),
-                            child: Image.asset(
-                              "assets/images/truck.png",
-                              width: 100,
+                            padding: const EdgeInsets.only(
+                              left: 0.0,
+                              bottom: 21.5,
+                            ),
+                            child: Transform.scale(
+                              scale: 1.1,
+                              child: Image.asset(
+                                "assets/images/truck.png",
+                                width: 120,
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -214,7 +220,7 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                                 ),
                               ),
                               Positioned(
-                                left: 160,
+                                left: 170,
                                 top: 30,
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -255,7 +261,7 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                     // },
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 30.0, top: 40),
+                    padding: EdgeInsets.only(left: 16.0, top: 40),
                     child: TextWidget(
                       text: "What amount of water do you need?",
                     ),

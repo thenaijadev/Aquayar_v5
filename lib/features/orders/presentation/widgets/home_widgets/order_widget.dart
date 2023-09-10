@@ -1,5 +1,8 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
+import 'package:aquayar/features/locations/data/providers/location_provider.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/circle_avatar_widget.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/order.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/show_promotion_sheet.dart';
@@ -23,24 +26,25 @@ class _OrderWidgetState extends State<OrderWidget> {
   void initState() {
     super.initState();
 
-    // getAddress(widget.orders);
+    getAddress(widget.orders);
   }
 
-  // List<String> addresses = [];
-  // getAddress(orders) async {
-  //   for (var order in orders) {
-  //     final address = await LocationProvider().getAddressFromCorrdinates(
-  //         '${order["customer"]["coordinates"][1]},${order["customer"]["coordinates"][0]}');
-  //     addresses.add(address!);
-  //   }
+  List<String> addresses = [];
+  getAddress(orders) async {
+    for (var order in orders) {
+      final address = await LocationProvider().getAddressFromCorrdinates(
+          '${order["customer"]["coordinates"][1]},${order["customer"]["coordinates"][0]}');
+      addresses.add(address!);
+    }
 
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
     return Column(
       children: [
         Row(
@@ -66,8 +70,8 @@ class _OrderWidgetState extends State<OrderWidget> {
           text: "Good Morning,",
           fontSize: 32,
         ),
-        const TextWidget(
-          text: "widget.user.displayName!",
+        TextWidget(
+          text: user.displayName!,
           fontSize: 32,
           fontWeight: FontWeight.bold,
         ),
@@ -141,7 +145,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                       order: widget.orders[index],
 
                       //TODO:NOTE
-                      address: " addresses[index]",
+                      address: addresses[index],
                       image: "assets/images/order_icon.png",
                     );
                   },

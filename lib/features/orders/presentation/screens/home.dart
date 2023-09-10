@@ -1,10 +1,11 @@
-import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
+import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/no_order_widget.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/order_widget.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
+import 'package:clay_containers/clay_containers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,36 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      floatingActionButton: BlocBuilder<OrderBloc, OrderState>(
+        builder: (context, state) {
+          if (state is OrderStateOrderRetrieved) {
+            if (state.orders.isNotEmpty) {
+              return SizedBox(
+                height: 70,
+                width: 70,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.orderWater);
+                  },
+                  child: ClayContainer(
+                    color: const Color.fromARGB(255, 4, 136, 231),
+                    parentColor: Colors.white,
+                    height: 150,
+                    width: 250,
+                    depth: 40,
+                    borderRadius: 75,
+                    curveType: CurveType.convex,
+                    child: Image.asset("assets/images/drop_icon.png"),
+                  ),
+                ),
+              );
+            } else {
+              return const SizedBox();
+            }
+          }
+          return const SizedBox();
+        },
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),

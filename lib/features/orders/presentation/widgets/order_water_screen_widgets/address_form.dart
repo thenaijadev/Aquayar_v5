@@ -60,11 +60,8 @@ class _AddressFormState extends State<AddressForm> {
         const SizedBox(
           height: 10,
         ),
-        const SizedBox(
-          height: 10,
-        ),
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 16),
+          padding: const EdgeInsets.only(left: 16.0, right: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
