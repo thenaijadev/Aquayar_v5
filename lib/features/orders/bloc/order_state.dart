@@ -71,3 +71,8 @@ class OrderStateOrderCreated extends OrderState {
   const OrderStateOrderCreated({required this.order});
   final Order order;
 }
+
+class OrderStateOrderDetailsRetrieved extends OrderState {
+  const OrderStateOrderDetailsRetrieved({required this.order});
+  final OrderModel order;
+}

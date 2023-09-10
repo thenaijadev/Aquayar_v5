@@ -1,5 +1,6 @@
 import 'package:aquayar/features/locations/data/providers/location_provider.dart';
 import 'package:aquayar/features/orders/data/models/order.dart';
+import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -60,7 +61,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       });
     });
 
-    on<OrderEventCreatOrder>((event, emit) async {
+    on<OrderEventCreateOrder>((event, emit) async {
       emit(OrderStateIsLoading());
 
       final String token = event.token;
@@ -79,11 +80,21 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           waterSize: waterSize,
           token: token);
 
-      response.fold((l) => emit(OrderStateGetPriceError(error: l)), (r) {
+      response.fold((l) => emit(OrderStateGetPriceError(error: l)), (r) async {
         final Order order = Order.fromMap(r);
-        print(order.toString());
         emit(OrderStateOrderCreated(order: order));
       });
+
+      final state = this.state;
+      if (state is OrderStateOrderCreated) {
+        final orderDetails = await repo.getOrderDetails(
+            token: token, orderId: state.order.orderId);
+        orderDetails.fold((l) => null, (r) {
+          final OrderModel order = OrderModel.fromMap(r);
+
+          emit(OrderStateOrderDetailsRetrieved(order: order));
+        });
+      }
     });
   }
 }

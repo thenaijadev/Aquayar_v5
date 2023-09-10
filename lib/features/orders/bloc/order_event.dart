@@ -17,8 +17,8 @@ class OrderEventGetNearestDriver extends OrderEvent {
   final String address;
 }
 
-class OrderEventCreatOrder extends OrderEvent {
-  const OrderEventCreatOrder({
+class OrderEventCreateOrder extends OrderEvent {
+  const OrderEventCreateOrder({
     required this.token,
     required this.waterSize,
     required this.startLocation,
@@ -33,4 +33,13 @@ class OrderEventCreatOrder extends OrderEvent {
 
   final double price;
   final String driver;
+}
+
+class OrderEventGetOrderDetails extends OrderEvent {
+  const OrderEventGetOrderDetails({
+    required this.token,
+    required this.orderId,
+  });
+  final String token;
+  final double orderId;
 }

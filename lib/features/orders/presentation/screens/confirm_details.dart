@@ -196,15 +196,13 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                 scaleX: 1.07,
                                 child: GestureDetector(
                                   onTap: () {
-                                    orderBloc.add(OrderEventCreatOrder(
+                                    orderBloc.add(OrderEventCreateOrder(
                                         token: widget.data["token"],
                                         waterSize: widget.data["waterSize"],
                                         startLocation: widget.data["address"],
                                         endLocation: "6.8429,7.3733",
                                         price: state.price.toDouble(),
                                         driver: widget.data["driver"].id));
-                                    // Navigator.pushNamed(
-                                    //     context, Routes.directionMap);
                                   },
                                   child: Image.asset(
                                     "assets/images/confirm_blue.png",

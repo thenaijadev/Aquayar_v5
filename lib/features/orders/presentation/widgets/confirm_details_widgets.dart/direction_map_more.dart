@@ -5,11 +5,17 @@ import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlin
 
 import 'package:flutter/material.dart';
 
-class DirectionMapScreenMore extends StatelessWidget {
+class DirectionMapScreenMore extends StatefulWidget {
   const DirectionMapScreenMore(
       {super.key, required this.showLessOnMap, required this.data});
   final void Function() showLessOnMap;
   final Map<String, dynamic> data;
+
+  @override
+  State<DirectionMapScreenMore> createState() => _DirectionMapScreenMoreState();
+}
+
+class _DirectionMapScreenMoreState extends State<DirectionMapScreenMore> {
   String formatTime(String input) {
     List<String> parts = input.split(' '); // Split the input string into parts
     String hours = parts[0]; // Get the hours part
@@ -56,10 +62,10 @@ class DirectionMapScreenMore extends StatelessWidget {
                         fontSize: 14,
                       ),
                       TextWidget(
-                          text: data["time"].contains("hour") ||
-                                  data["time"].contains("hours")
-                              ? formatTime(data["time"])
-                              : data["time"],
+                          text: widget.data["time"].contains("hour") ||
+                                  widget.data["time"].contains("hours")
+                              ? formatTime(widget.data["time"])
+                              : widget.data["time"],
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ],
@@ -77,7 +83,7 @@ class DirectionMapScreenMore extends StatelessWidget {
                       ),
                       TextWidget(
                           text:
-                              "${(data["distance"] / 1000).toStringAsFixed(1)}KM",
+                              "${(widget.data["distance"] / 1000).toStringAsFixed(1)}KM",
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ],
@@ -170,7 +176,7 @@ class DirectionMapScreenMore extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextWidget(
-                            text: formatNumberWithCommas(data["price"]),
+                            text: formatNumberWithCommas(widget.data["price"]),
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                           ),
@@ -315,7 +321,7 @@ class DirectionMapScreenMore extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: showLessOnMap,
+                    onTap: widget.showLessOnMap,
                     child: OutlinedContainer(
                         borderRadius: 200,
                         padding: const EdgeInsets.all(10),
