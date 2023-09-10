@@ -124,7 +124,7 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                           fontSize: 16,
                         ),
                         const SizedBox(
-                          width: 15,
+                          width: 5,
                         ),
                         Image.asset("assets/images/red_dot.png")
                       ],
@@ -132,7 +132,7 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                   ],
                 ),
                 const SizedBox(
-                  width: 25,
+                  width: 70,
                 ),
                 Column(
                   children: [
