@@ -67,24 +67,6 @@ class OrderEventGetPrice extends OrderEvent {
   final String endLocation;
 }
 
-class OrderEventGetOrderDetails extends OrderEvent {
-  const OrderEventGetOrderDetails({
-    required this.token,
-    required this.waterSize,
-    required this.startLocation,
-    required this.endLocation,
-    required this.price,
-    required this.driver,
-  });
-  final String token;
-  final double waterSize;
-  final String startLocation;
-  final String endLocation;
-
-  final double price;
-  final String driver;
-}
-
 class OrderStateOrderCreated extends OrderState {
   const OrderStateOrderCreated({required this.order});
   final Order order;

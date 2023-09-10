@@ -58,4 +58,16 @@ class OrderRepository {
 
     return response;
   }
+
+  EitherMap getOrderDetails({
+    required String token,
+    required String orderId,
+  }) async {
+    final response = await provider.getOrderDetails(
+      orderId: orderId,
+      token: token,
+    );
+
+    return response;
+  }
 }

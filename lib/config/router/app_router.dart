@@ -6,6 +6,7 @@ import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
+import 'package:aquayar/features/chat/presentation/screens/chat_screen.dart';
 import 'package:aquayar/features/delete_account/presentation/screens/delete_account.dart';
 import 'package:aquayar/features/help&Support/presentation/screens/help_and_support.dart';
 import 'package:aquayar/features/help&Support/presentation/screens/help_and_support_no_tickets.dart';
@@ -154,6 +155,11 @@ class AppRouter {
 
         return MaterialPageRoute(
           builder: (_) => ConfirmDetails(data: data),
+        );
+
+      case Routes.chat:
+        return MaterialPageRoute(
+          builder: (_) => const ChatScreen(),
         );
       default:
         return MaterialPageRoute(

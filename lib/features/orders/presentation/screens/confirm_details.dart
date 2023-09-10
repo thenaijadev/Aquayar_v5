@@ -196,7 +196,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                 scaleX: 1.07,
                                 child: GestureDetector(
                                   onTap: () {
-                                    orderBloc.add(OrderEventGetOrderDetails(
+                                    orderBloc.add(OrderEventCreatOrder(
                                         token: widget.data["token"],
                                         waterSize: widget.data["waterSize"],
                                         startLocation: widget.data["address"],

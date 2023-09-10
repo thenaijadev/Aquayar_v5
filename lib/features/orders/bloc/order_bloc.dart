@@ -60,7 +60,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       });
     });
 
-    on<OrderEventGetOrderDetails>((event, emit) async {
+    on<OrderEventCreatOrder>((event, emit) async {
       emit(OrderStateIsLoading());
 
       final String token = event.token;
