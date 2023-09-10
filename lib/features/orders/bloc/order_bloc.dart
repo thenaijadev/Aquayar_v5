@@ -1,4 +1,5 @@
 import 'package:aquayar/features/locations/data/providers/location_provider.dart';
+import 'package:aquayar/features/orders/data/models/order.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -56,6 +57,32 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             distance: r["distance"],
             price: r["data"]["price"] ?? 200,
             time: r["time"]));
+      });
+    });
+
+    on<OrderEventGetOrderDetails>((event, emit) async {
+      emit(OrderStateIsLoading());
+
+      final String token = event.token;
+      final String startLocation = event.startLocation;
+      final String endLocation = event.endLocation;
+      final double price = event.price;
+      final double waterSize = event.waterSize;
+
+      final String driver = event.driver;
+
+      final response = await repo.createOrder(
+          driver: driver,
+          price: price,
+          endLocation: endLocation,
+          startLocation: startLocation,
+          waterSize: waterSize,
+          token: token);
+
+      response.fold((l) => emit(OrderStateGetPriceError(error: l)), (r) {
+        final Order order = Order.fromMap(r);
+        print(order.toString());
+        emit(OrderStateOrderCreated(order: order));
       });
     });
   }

@@ -100,4 +100,44 @@ class OrderProviderImplementation {
       return left(e.toString());
     }
   }
+
+  EitherMap createOrder({
+    required String token,
+    required double waterSize,
+    required String startLocation,
+    required String endLocation,
+    required double price,
+    required String driver,
+  }) async {
+    try {
+      var directions =
+          await LocationProvider().getDirections(startLocation, endLocation);
+
+      final distance = Geolocator.distanceBetween(
+          directions?["start_location"]["lat"],
+          directions?["start_location"]["lng"],
+          directions?["end_location"]["lat"],
+          directions?["end_location"]["lng"]);
+
+      final response = await DioClient.instance.post(
+        RoutesAndPaths.createOrder,
+        data: {
+          "waterSize": waterSize,
+          "distance": distance,
+          "price": price,
+          "latitude": directions?["start_location"]["lat"],
+          "longitude": directions?["start_location"]["lng"],
+          "driver": driver
+        },
+        options: Options(
+          headers: {"Authorization": "Bearer $token"},
+        ),
+      );
+      return right(response);
+    } on DioException catch (e) {
+      return left(e.response?.data);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
 }

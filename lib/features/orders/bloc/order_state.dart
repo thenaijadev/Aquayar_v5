@@ -85,4 +85,7 @@ class OrderEventGetOrderDetails extends OrderEvent {
   final String driver;
 }
 
-class OrderStateOrderCreated extends OrderState {}
+class OrderStateOrderCreated extends OrderState {
+  const OrderStateOrderCreated({required this.order});
+  final Order order;
+}
