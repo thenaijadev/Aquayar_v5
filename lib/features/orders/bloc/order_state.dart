@@ -87,3 +87,7 @@ class OrderStateCancelError extends OrderState {
   const OrderStateCancelError({required this.error});
   final String error;
 }
+
+class OrderStateOrderCancelling extends OrderState {
+  const OrderStateOrderCancelling();
+}

@@ -63,7 +63,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     });
 
     on<OrderEventCancelOrder>((event, emit) async {
-      emit(OrderStateIsLoading());
+      emit(const OrderStateOrderCancelling());
       final String token = event.token;
       final String orderId = event.orderId;
 

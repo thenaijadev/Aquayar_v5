@@ -1,3 +1,4 @@
+import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/locations/data/providers/location_provider.dart';
@@ -155,27 +156,39 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                         ),
                       ),
                     ),
-                    BlocBuilder<OrderBloc, OrderState>(
-                      builder: (context, state) {
-                        return state is OrderStateOrderDetailsRetrieved
-                            ? GestureDetector(
-                                onTap: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: OutlinedContainer(
-                                    color: Colors.white,
-                                    borderRadius: 100,
-                                    padding: const EdgeInsets.all(10),
-                                    child: Image.asset(
-                                      "assets/images/red_trash_bin.png",
-                                      width: 20,
+                    BlocListener<OrderBloc, OrderState>(
+                      listener: (context, state) {
+                        if (state is OrderStateOrderCancelling) {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.orderCancellingLoading);
+                        }
+                      },
+                      child: BlocBuilder<OrderBloc, OrderState>(
+                        builder: (context, state) {
+                          return state is OrderStateOrderDetailsRetrieved
+                              ? GestureDetector(
+                                  onTap: () {
+                                    orderBloc.add(OrderEventCancelOrder(
+                                        token: widget.data["token"],
+                                        orderId: state.order.id));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: OutlinedContainer(
+                                      color: Colors.white,
+                                      borderRadius: 100,
+                                      padding: const EdgeInsets.all(10),
+                                      child: Image.asset(
+                                        "assets/images/red_trash_bin.png",
+                                        width: 20,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            : const SizedBox();
-                      },
+                                )
+                              : const SizedBox();
+                        },
+                      ),
                     )
                   ],
                 ),

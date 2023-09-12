@@ -16,6 +16,7 @@ import 'package:aquayar/features/orders/presentation/screens/confirm_details.dar
 import 'package:aquayar/features/orders/presentation/screens/home.dart';
 import 'package:aquayar/features/locations/presentation/screens/locations.dart';
 import 'package:aquayar/features/orders/presentation/screens/menu.dart';
+import 'package:aquayar/features/orders/presentation/screens/order_canceling_screen.dart';
 import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
 import 'package:aquayar/features/locations/presentation/screens/rename_location.dart';
 import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
@@ -160,6 +161,11 @@ class AppRouter {
       case Routes.chat:
         return MaterialPageRoute(
           builder: (_) => const ChatScreen(),
+        );
+
+      case Routes.orderCancellingLoading:
+        return MaterialPageRoute(
+          builder: (_) => const OrderCancelLoading(),
         );
       default:
         return MaterialPageRoute(
