@@ -62,6 +62,20 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       });
     });
 
+    on<OrderEventCancelOrder>((event, emit) async {
+      emit(OrderStateIsLoading());
+      final String token = event.token;
+      final String orderId = event.orderId;
+
+      final response = await repo.cancelOrder(
+        orderId: orderId,
+        token: token,
+      );
+      response.fold((l) => emit(OrderStateCancelError(error: l)), (r) {
+        emit(const OrderStateOrderCanceled());
+      });
+    });
+
     on<OrderEventCreateOrder>((event, emit) async {
       emit(OrderStateIsLoading());
 

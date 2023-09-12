@@ -78,3 +78,12 @@ class OrderStateOrderDetailsRetrieved extends OrderState {
   final OrderModel order;
   final DriverModel driver;
 }
+
+class OrderStateOrderCanceled extends OrderState {
+  const OrderStateOrderCanceled();
+}
+
+class OrderStateCancelError extends OrderState {
+  const OrderStateCancelError({required this.error});
+  final String error;
+}

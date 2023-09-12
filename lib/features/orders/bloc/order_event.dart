@@ -43,3 +43,12 @@ class OrderEventGetOrderDetails extends OrderEvent {
   final String token;
   final double orderId;
 }
+
+class OrderEventCancelOrder extends OrderEvent {
+  const OrderEventCancelOrder({
+    required this.token,
+    required this.orderId,
+  });
+  final String token;
+  final String orderId;
+}
