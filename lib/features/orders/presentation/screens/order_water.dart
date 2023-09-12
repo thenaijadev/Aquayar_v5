@@ -180,7 +180,7 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                               scale: 1.1,
                               child: Image.asset(
                                 "assets/images/truck.png",
-                                width: 120,
+                                width: 100,
                               ),
                             ),
                           ),

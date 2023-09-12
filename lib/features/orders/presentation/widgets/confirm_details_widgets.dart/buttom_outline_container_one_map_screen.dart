@@ -34,57 +34,57 @@ class ButtomMapScreenOne extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                "assets/images/timer.png",
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  TextWidget(
-                    text: data["time"].contains("hours") ||
-                            data["time"].contains("hour")
-                        ? formatTime(data["time"])
-                        : data["time"],
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  Image.asset(
+                    "assets/images/timer.png",
                   ),
-                  const TextWidget(
-                    text: 'Estimated Time of Delivery',
-                    color: Color(0xFF868FAD),
-                    fontSize: 14,
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        text: data["time"].contains("hours") ||
+                                data["time"].contains("hour")
+                            ? formatTime(data["time"])
+                            : data["time"],
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const TextWidget(
+                        text: 'Estimated Time of Delivery',
+                        color: Color(0xFF868FAD),
+                        fontSize: 14,
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(
-                width: 60,
-              ),
-              Flexible(
-                child: Row(
-                  children: [
-                    Image.asset("assets/images/drop.png"),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: data["waterSize"].round().toString(),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        const TextWidget(
-                          text: "Liters",
-                          color: Color(0xFF868FAD),
-                          fontSize: 14,
-                        )
-                      ],
-                    )
-                  ],
-                ),
+              Row(
+                children: [
+                  Image.asset("assets/images/drop.png"),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Column(
+                    children: [
+                      TextWidget(
+                        text: data["waterSize"].round().toString(),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const TextWidget(
+                        text: "Liters",
+                        color: Color(0xFF868FAD),
+                        fontSize: 14,
+                      )
+                    ],
+                  )
+                ],
               ),
             ],
           ),
@@ -96,30 +96,32 @@ class ButtomMapScreenOne extends StatelessWidget {
             height: 16,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                "assets/images/naira.png",
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  const TextWidget(
-                    text: 'Amount to Pay',
-                    color: Color(0xFF868FAD),
-                    fontSize: 14,
+                  Image.asset(
+                    "assets/images/naira.png",
                   ),
-                  TextWidget(
-                    text: formatNumberWithCommas(data["price"]),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const TextWidget(
+                        text: 'Amount to Pay',
+                        color: Color(0xFF868FAD),
+                        fontSize: 14,
+                      ),
+                      TextWidget(
+                        text: formatNumberWithCommas(data["price"]),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ],
                   ),
                 ],
-              ),
-              const SizedBox(
-                width: 100,
               ),
               Column(
                 children: [

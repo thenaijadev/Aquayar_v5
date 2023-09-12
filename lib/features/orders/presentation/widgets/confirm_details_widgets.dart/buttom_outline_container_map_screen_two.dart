@@ -16,54 +16,54 @@ class ButtomMapScreenTwo extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                "assets/images/timer.png",
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  TextWidget(
-                    text: "Calculating...",
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  Image.asset(
+                    "assets/images/timer.png",
                   ),
-                  TextWidget(
-                    text: 'Estimated Time of Delivery',
-                    color: Color(0xFF868FAD),
-                    fontSize: 14,
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        text: "Calculating...",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      TextWidget(
+                        text: 'Estimated Time of Delivery',
+                        color: Color(0xFF868FAD),
+                        fontSize: 14,
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              Flexible(
-                child: Row(
-                  children: [
-                    Image.asset("assets/images/drop.png"),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: waterSize.round().toString(),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        const TextWidget(
-                          text: "Liters",
-                          color: Color(0xFF868FAD),
-                          fontSize: 13,
-                        )
-                      ],
-                    )
-                  ],
-                ),
+              Row(
+                children: [
+                  Image.asset("assets/images/drop.png"),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Column(
+                    children: [
+                      TextWidget(
+                        text: waterSize.round().toString(),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const TextWidget(
+                        text: "Liters",
+                        color: Color(0xFF868FAD),
+                        fontSize: 13,
+                      )
+                    ],
+                  )
+                ],
               ),
             ],
           ),
