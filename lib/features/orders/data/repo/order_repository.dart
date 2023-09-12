@@ -70,4 +70,16 @@ class OrderRepository {
 
     return response;
   }
+
+  EitherMap cancelOrder({
+    required String token,
+    required String orderId,
+  }) async {
+    final response = await provider.cancelOrder(
+      orderId: orderId,
+      token: token,
+    );
+
+    return response;
+  }
 }

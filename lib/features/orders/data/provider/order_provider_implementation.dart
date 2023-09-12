@@ -157,4 +157,21 @@ class OrderProviderImplementation {
       return left(e.toString());
     }
   }
+
+  EitherMap cancelOrder(
+      {required String token, required String orderId}) async {
+    try {
+      final response = await DioClient.instance.post(
+        "${RoutesAndPaths.createOrder}/$orderId/cancel",
+        options: Options(
+          headers: {"Authorization": "Bearer $token"},
+        ),
+      );
+      return right(response);
+    } on DioException catch (e) {
+      return left(e.response?.data);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
 }
