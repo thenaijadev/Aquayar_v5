@@ -95,51 +95,53 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 42,
-                  width: 42,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(width: 4, color: Colors.white)),
-                  child: Image.asset("assets/images/head.png"),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    TextWidget(
-                      text: widget.driver.displayName,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    Container(
+                      height: 42,
+                      width: 42,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(width: 4, color: Colors.white)),
+                      child: Image.asset("assets/images/head.png"),
                     ),
-                    Row(
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const TextWidget(
-                          text: "Driver",
-                          color: Color(0xFF868FAD),
-                          fontSize: 12,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
                         TextWidget(
-                          text: widget.driver.licensePlate,
-                          color: const Color(0xFF868FAD),
-                          fontSize: 16,
+                          text: widget.driver.displayName,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(
-                          width: 5,
+                        Row(
+                          children: [
+                            const TextWidget(
+                              text: "Driver",
+                              color: Color(0xFF868FAD),
+                              fontSize: 12,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            TextWidget(
+                              text: widget.driver.licensePlate,
+                              color: const Color(0xFF868FAD),
+                              fontSize: 16,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Image.asset("assets/images/red_dot.png")
+                          ],
                         ),
-                        Image.asset("assets/images/red_dot.png")
                       ],
                     ),
                   ],
-                ),
-                const SizedBox(
-                  width: 70,
                 ),
                 Column(
                   children: [
