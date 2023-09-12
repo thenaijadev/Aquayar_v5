@@ -155,17 +155,27 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: OutlinedContainer(
-                        color: Colors.white,
-                        borderRadius: 100,
-                        padding: const EdgeInsets.all(10),
-                        child: Image.asset(
-                          "assets/images/red_trash_bin.png",
-                          width: 20,
-                        ),
-                      ),
+                    BlocBuilder<OrderBloc, OrderState>(
+                      builder: (context, state) {
+                        return state is OrderStateOrderDetailsRetrieved
+                            ? GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: OutlinedContainer(
+                                    color: Colors.white,
+                                    borderRadius: 100,
+                                    padding: const EdgeInsets.all(10),
+                                    child: Image.asset(
+                                      "assets/images/red_trash_bin.png",
+                                      width: 20,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
                     )
                   ],
                 ),
