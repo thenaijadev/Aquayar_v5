@@ -163,7 +163,7 @@ class _AddressFormState extends State<AddressForm> {
                                         : addresses[1].name,
                                     fontSize: 14,
                                     color: !isHome
-                                        ? const Color(0xff623903)
+                                        ? const Color(0xFF85A407)
                                         : const Color(0xff868FAE),
                                   ),
                                 ),

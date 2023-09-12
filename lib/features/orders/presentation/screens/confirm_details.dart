@@ -44,31 +44,37 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
         "${widget.data["driver"].coordinates[1]},${widget.data["driver"].coordinates[0]}");
     return Scaffold(
       appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.only(right: step == "four" ? 10 : 100.0),
-            child: BlocBuilder<OrderBloc, OrderState>(
-              builder: (context, state) {
-                return state is OrderStateOrderCreated
-                    ? const TextWidget(
-                        text: "Your delivery is underway",
-                        color: Color(0xFF20254F),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )
-                    : const TextWidget(
-                        text: "Confirm details",
-                        color: Color(0xFF20254F),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      );
-              },
-            ),
+          centerTitle: false,
+          title: BlocBuilder<OrderBloc, OrderState>(
+            builder: (context, state) {
+              return state is OrderStateOrderCreated
+                  ? const TextWidget(
+                      text: "Your delivery is underway",
+                      color: Color(0xFF20254F),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    )
+                  : state is OrderStateOrderDetailsRetrieved
+                      ? const TextWidget(
+                          text: "Your delivery is underway...",
+                          color: Color(0xFF20254F),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )
+                      : const TextWidget(
+                          text: "Confirm details",
+                          color: Color(0xFF20254F),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        );
+            },
           ),
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
-              return state is OrderStateOrderCreated
+              return state is OrderStateOrderCreated ||
+                      state is OrderStateOrderDetailsRetrieved
                   ? GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Image.asset(
@@ -137,7 +143,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                               width: 7,
                             ),
                             SizedBox(
-                              width: 171,
+                              width: 151,
                               child: TextWidget(
                                 overflow: TextOverflow.ellipsis,
                                 text: widget.data["address"],
@@ -149,6 +155,18 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: OutlinedContainer(
+                        color: Colors.white,
+                        borderRadius: 100,
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset(
+                          "assets/images/red_trash_bin.png",
+                          width: 20,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
