@@ -1,10 +1,10 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
-import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/payment_summary.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/total_amount_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/wave_painter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paystack/flutter_paystack.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -15,6 +15,8 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen>
     with SingleTickerProviderStateMixin {
+  var publicKey = '[YOUR_PAYSTACK_PUBLIC_KEY]';
+  final plugin = PaystackPlugin();
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -32,6 +34,7 @@ class _PaymentScreenState extends State<PaymentScreen>
         curve: Curves.easeInOut,
       ),
     );
+    plugin.initialize(publicKey: publicKey);
   }
 
   @override

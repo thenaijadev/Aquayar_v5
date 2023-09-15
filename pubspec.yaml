@@ -58,6 +58,7 @@ dependencies:
   crypto: ^3.0.3
   hydrated_bloc: ^9.1.2
   get_it: ^7.6.4
+  flutter_paystack: ^1.0.7
 
 dev_dependencies:
   flutter_test:

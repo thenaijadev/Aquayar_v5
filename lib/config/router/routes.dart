@@ -29,4 +29,5 @@ class Routes {
   static const String chat = '/chat';
   static const String directionMap = '/directionMap';
   static const String orderCancellingLoading = '/orderCancellingLoading';
+  static const String payment = '/payment';
 }

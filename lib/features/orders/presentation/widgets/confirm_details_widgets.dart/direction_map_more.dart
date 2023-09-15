@@ -217,51 +217,51 @@ class _DirectionMapScreenMoreState extends State<DirectionMapScreenMore> {
               Padding(
                 padding: const EdgeInsets.only(top: 11.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 42,
-                      width: 42,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(width: 4, color: Colors.white)),
-                      child: Image.asset("assets/images/head.png"),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        const TextWidget(
-                          text: "Henry Immanuel",
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                        Container(
+                          height: 42,
+                          width: 42,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              border:
+                                  Border.all(width: 4, color: Colors.white)),
+                          child: Image.asset("assets/images/head.png"),
                         ),
-                        Row(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const TextWidget(
-                              text: "Driver",
-                              color: Color(0xFF868FAD),
-                              fontSize: 12,
+                            TextWidget(
+                              text: widget.driver.displayName,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(
-                              width: 5,
+                            Row(
+                              children: [
+                                const TextWidget(
+                                  text: "Driver",
+                                  color: Color(0xFF868FAD),
+                                  fontSize: 12,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                TextWidget(
+                                  text: widget.driver.licensePlate,
+                                  color: const Color(0xFF868FAD),
+                                  fontSize: 16,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Image.asset("assets/images/red_dot.png")
+                              ],
                             ),
-                            const TextWidget(
-                              text: 'ABJ-567-EA',
-                              color: Color(0xFF868FAD),
-                              fontSize: 16,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Image.asset("assets/images/red_dot.png")
                           ],
                         ),
                       ],
-                    ),
-                    const SizedBox(
-                      width: 70,
                     ),
                     Column(
                       children: [
@@ -269,15 +269,15 @@ class _DirectionMapScreenMoreState extends State<DirectionMapScreenMore> {
                           children: [
                             Image.asset("assets/images/star_small.png"),
                             const SizedBox(width: 5),
-                            const TextWidget(
-                              text: "4.3",
+                            TextWidget(
+                              text: "${widget.driver.rating}",
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ],
                         ),
-                        const TextWidget(
-                          text: "(246) trips",
+                        TextWidget(
+                          text: "(${widget.driver.trips}) trips",
                           fontSize: 14,
                         ),
                       ],
