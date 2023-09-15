@@ -1,7 +1,7 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
-import 'package:aquayar/features/orders/presentation/widgets/water_aquired.dart/custom_alert.dart';
-import 'package:aquayar/features/orders/presentation/widgets/water_aquired.dart/wave_painter.dart';
+import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/custom_alert.dart';
+import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/wave_painter.dart';
 import 'package:flutter/material.dart';
 
 class WaterAcquiredScreen extends StatefulWidget {

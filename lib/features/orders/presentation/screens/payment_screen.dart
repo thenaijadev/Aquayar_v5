@@ -1,7 +1,8 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
-import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/payment_data_row.dart';
+import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/payment_summary.dart';
+import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/total_amount_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/wave_painter.dart';
 import 'package:flutter/material.dart';
 
@@ -86,6 +87,9 @@ class _PaymentScreenState extends State<PaymentScreen>
                   height: 40,
                 ),
                 PaymentSummary(),
+                TotalAmountContainer(
+                  amount: "9000.82",
+                ),
                 SizedBox(
                   height: 150,
                 ),
