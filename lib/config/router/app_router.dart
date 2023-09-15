@@ -1,7 +1,6 @@
 import 'package:aquayar/features/auth/presentation/screens/change_password_screen_from_menu.dart';
 import 'package:aquayar/features/auth/presentation/screens/create_new_password_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/forgot_password_otp_sent.dart';
-import 'package:aquayar/features/auth/presentation/screens/landing_screen.dart';
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
@@ -19,6 +18,7 @@ import 'package:aquayar/features/orders/presentation/screens/menu.dart';
 import 'package:aquayar/features/orders/presentation/screens/order_canceling_screen.dart';
 import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
 import 'package:aquayar/features/locations/presentation/screens/rename_location.dart';
+import 'package:aquayar/features/orders/presentation/screens/payment_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
@@ -31,9 +31,14 @@ import 'package:flutter/material.dart';
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      // case Routes.landing:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const LandingScreen(),
+      //   );
+
       case Routes.landing:
         return MaterialPageRoute(
-          builder: (_) => const LandingScreen(),
+          builder: (_) => const PaymentScreen(),
         );
 
       case Routes.login:

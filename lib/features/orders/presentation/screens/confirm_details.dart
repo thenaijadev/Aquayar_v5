@@ -144,7 +144,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                               width: 7,
                             ),
                             SizedBox(
-                              width: 151,
+                              width: 120,
                               child: TextWidget(
                                 overflow: TextOverflow.ellipsis,
                                 text: widget.data["address"],
@@ -180,7 +180,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                                       borderRadius: 100,
                                       padding: const EdgeInsets.all(10),
                                       child: Image.asset(
-                                        "assets/images/red_trash_bin.png",
+                                        "assets/images/red_trash.png",
                                         width: 20,
                                       ),
                                     ),
