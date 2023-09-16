@@ -404,6 +404,9 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
               } else {
                 return GestureDetector(
                   onTap: () {
+                    if (controller.text == "" || liters < 500) {
+                      return;
+                    }
                     orderBloc.add(OrderEventGetNearestDriver(
                         waterSize: liters, address: controller.text));
                   },
