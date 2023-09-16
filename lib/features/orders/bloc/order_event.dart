@@ -63,5 +63,5 @@ class OrderEventPayForOrder extends OrderEvent {
   final String token;
   final String orderId;
   final String email;
-  final String price;
+  final int price;
 }

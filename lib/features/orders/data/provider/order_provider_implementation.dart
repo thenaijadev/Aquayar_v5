@@ -191,10 +191,14 @@ class OrderProviderImplementation {
           headers: {"Authorization": "Bearer $token"},
         ),
       );
+      print(response);
       return right(response);
     } on DioException catch (e) {
+      print(e.response?.data);
       return left(e.response?.data);
     } catch (e) {
+      print(e.toString());
+
       return left(e.toString());
     }
   }
