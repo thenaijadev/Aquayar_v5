@@ -2,7 +2,6 @@ import 'package:aquayar/features/auth/presentation/screens/change_password_scree
 import 'package:aquayar/features/auth/presentation/screens/create_new_password_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/forgot_password_otp_sent.dart';
 import 'package:aquayar/config/router/routes.dart';
-import 'package:aquayar/features/auth/presentation/screens/landing_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
 import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
@@ -32,12 +31,12 @@ import 'package:flutter/material.dart';
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Routes.landing:
-        return MaterialPageRoute(
-          builder: (_) => const LandingScreen(),
-        );
+      // case Routes.landing:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const LandingScreen(),
+      //   );
 
-      case Routes.payment:
+      case Routes.landing:
         return MaterialPageRoute(
           builder: (_) => const PaymentScreen(),
         );

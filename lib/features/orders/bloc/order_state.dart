@@ -91,3 +91,11 @@ class OrderStateCancelError extends OrderState {
 class OrderStateOrderCancelling extends OrderState {
   const OrderStateOrderCancelling();
 }
+
+class OrderStateOrderPaymentMade extends OrderState {
+  const OrderStateOrderPaymentMade();
+}
+
+class OrderStatePayingForOrder extends OrderState {
+  const OrderStatePayingForOrder();
+}

@@ -174,4 +174,28 @@ class OrderProviderImplementation {
       return left(e.toString());
     }
   }
+
+  EitherMap payForOrder(
+      {required String token,
+      required String orderId,
+      required int price,
+      required String email}) async {
+    try {
+      final response = await DioClient.instance.post(
+        "${RoutesAndPaths.createOrder}/$orderId/pay",
+        data: {
+          "email": email,
+          "price": price,
+        },
+        options: Options(
+          headers: {"Authorization": "Bearer $token"},
+        ),
+      );
+      return right(response);
+    } on DioException catch (e) {
+      return left(e.response?.data);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
 }

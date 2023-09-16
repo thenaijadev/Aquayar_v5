@@ -52,3 +52,16 @@ class OrderEventCancelOrder extends OrderEvent {
   final String token;
   final String orderId;
 }
+
+class OrderEventPayForOrder extends OrderEvent {
+  const OrderEventPayForOrder({
+    required this.token,
+    required this.orderId,
+    required this.email,
+    required this.price,
+  });
+  final String token;
+  final String orderId;
+  final String email;
+  final String price;
+}
