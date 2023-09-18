@@ -8,7 +8,8 @@ sealed class PaymentEvent extends Equatable {
 }
 
 class PaymentEventStartPaymentProcess extends PaymentEvent {
-  PaymentEventStartPaymentProcess({required this.token, required this.orderID});
+  const PaymentEventStartPaymentProcess(
+      {required this.token, required this.orderID});
   final String token;
   final String orderID;
 }

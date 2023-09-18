@@ -20,7 +20,7 @@ class PaymentStateError extends PaymentState {
 class PaymentStatePaymentProcessing extends PaymentState {}
 
 class PaymentStatePaymentProcessStarted extends PaymentState {
-  PaymentStatePaymentProcessStarted({required this.paymentDetails});
+  const PaymentStatePaymentProcessStarted({required this.paymentDetails});
 
   final PaymentDetails paymentDetails;
 
