@@ -81,9 +81,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       final String orderId = event.orderId;
 
       final response = await repo.payForOrder(
-        email: event.email,
         orderId: orderId,
-        price: event.price,
         token: token,
       );
       response.fold((l) => emit(OrderStateError(error: l)), (r) {

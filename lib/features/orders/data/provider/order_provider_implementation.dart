@@ -175,18 +175,13 @@ class OrderProviderImplementation {
     }
   }
 
-  EitherMap payForOrder(
-      {required String token,
-      required String orderId,
-      required int price,
-      required String email}) async {
+  EitherMap payForOrder({
+    required String token,
+    required String orderId,
+  }) async {
     try {
       final response = await DioClient.instance.post(
         "${RoutesAndPaths.createOrder}/$orderId/pay",
-        data: {
-          "email": email,
-          "price": price,
-        },
         options: Options(
           headers: {"Authorization": "Bearer $token"},
         ),

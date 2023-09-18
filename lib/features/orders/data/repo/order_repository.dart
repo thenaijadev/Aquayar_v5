@@ -83,13 +83,14 @@ class OrderRepository {
     return response;
   }
 
-  EitherMap payForOrder(
-      {required String token,
-      required String orderId,
-      required int price,
-      required String email}) async {
+  EitherMap payForOrder({
+    required String token,
+    required String orderId,
+  }) async {
     final response = await provider.payForOrder(
-        token: token, orderId: orderId, price: price, email: email);
+      token: token,
+      orderId: orderId,
+    );
     return response;
   }
 }

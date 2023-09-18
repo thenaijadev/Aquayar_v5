@@ -1,11 +1,8 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
-import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
-import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/help&Support/presentation/widgets/horizontal_line.dart';
 import 'package:aquayar/features/orders/data/models/driver_model.dart';
 import 'package:aquayar/features/orders/data/models/order_model.dart';
-import 'package:aquayar/features/orders/data/provider/order_provider_implementation.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:flutter/material.dart';
 
@@ -205,13 +202,8 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        final AquayarAuthUser user =
-                            AquayarBox.getAquayarUser().values.last;
-                        OrderProviderImplementation().payForOrder(
-                            token: widget.data["token"],
-                            orderId: widget.order.id,
-                            email: user.email!,
-                            price: widget.order.price);
+                        Navigator.pushNamed(context, Routes.payment,
+                            arguments: widget.order.id);
                       },
                       child: const TextWidget(
                         text: "Call",

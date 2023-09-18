@@ -4,12 +4,8 @@ import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlin
 import 'package:flutter/material.dart';
 
 class Order extends StatefulWidget {
-  const Order(
-      {super.key,
-      required this.image,
-      required this.order,
-      required this.address});
-  final String image;
+  const Order({super.key, required this.order, required this.address});
+
   final Map<String, dynamic> order;
   final String address;
   @override
@@ -34,7 +30,8 @@ class _OrderState extends State<Order> {
         child: Row(
           children: [
             Center(
-              child: Image.asset(widget.image),
+              child: Image.asset(
+                  "assets/images/${widget.order["status"].toString().toUpperCase() == "PENDING" ? "order_icon.png" : widget.order["status"].toString().toUpperCase() == "CANCELED" ? "cancelled_order.png" : "completed_order_icon.png"}"),
             ),
             const SizedBox(
               width: 20,

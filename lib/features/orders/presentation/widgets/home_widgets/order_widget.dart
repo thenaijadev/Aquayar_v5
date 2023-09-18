@@ -146,7 +146,6 @@ class _OrderWidgetState extends State<OrderWidget> {
 
                       //TODO:NOTE
                       address: addresses[index],
-                      image: "assets/images/order_icon.png",
                     );
                   },
                   // children: const [

@@ -57,11 +57,7 @@ class OrderEventPayForOrder extends OrderEvent {
   const OrderEventPayForOrder({
     required this.token,
     required this.orderId,
-    required this.email,
-    required this.price,
   });
   final String token;
   final String orderId;
-  final String email;
-  final int price;
 }

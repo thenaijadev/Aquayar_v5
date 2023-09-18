@@ -38,8 +38,10 @@ class AppRouter {
         );
 
       case Routes.payment:
+        var id = routeSettings.arguments as String;
+
         return MaterialPageRoute(
-          builder: (_) => const PaymentScreen(),
+          builder: (_) => PaymentScreen(id: id),
         );
 
       case Routes.login:

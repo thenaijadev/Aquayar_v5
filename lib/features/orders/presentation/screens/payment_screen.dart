@@ -1,13 +1,18 @@
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
+import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
+import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/payment_summary.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/total_amount_container.dart';
 import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/wave_painter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+  const PaymentScreen({super.key, required this.id});
+  final String id;
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -64,19 +69,19 @@ class _PaymentScreenState extends State<PaymentScreen>
               },
             ),
           ),
-          const Positioned.fill(
+          Positioned.fill(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 75,
                 ),
-                TextWidget(
+                const TextWidget(
                   text: "Order Complete!",
                   fontSize: 33,
                   color: AppColors.titleBlack,
                   fontWeight: FontWeight.bold,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextWidget(
                     textAlign: TextAlign.center,
@@ -86,17 +91,32 @@ class _PaymentScreenState extends State<PaymentScreen>
                     color: Color(0xff868FAE),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                PaymentSummary(),
-                TotalAmountContainer(
-                  amount: "9000.82",
+                const PaymentSummary(),
+                BlocBuilder<OrderBloc, OrderState>(
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () {
+                        final OrderBloc bloc = context.read<OrderBloc>();
+                        final AquayarAuthUser user =
+                            AquayarBox.getAquayarUser().values.last;
+                        bloc.add(OrderEventPayForOrder(
+                          token: user.authToken!,
+                          orderId: widget.id,
+                        ));
+                      },
+                      child: const TotalAmountContainer(
+                        amount: "9000.82",
+                      ),
+                    );
+                  },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 150,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
