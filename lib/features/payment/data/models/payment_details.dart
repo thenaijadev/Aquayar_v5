@@ -47,4 +47,8 @@ class Data {
     data['reference'] = reference;
     return data;
   }
+
+  @override
+  String toString() =>
+      'Data(authorizationUrl: $authorizationUrl, accessCode: $accessCode, reference: $reference)';
 }
