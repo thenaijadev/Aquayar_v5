@@ -3,6 +3,7 @@ import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
+import 'package:aquayar/features/payment/bloc/payment_bloc.dart';
 import 'package:aquayar/features/payment/presentation/widgets/payment_summary.dart';
 import 'package:aquayar/features/payment/presentation/widgets/total_amount_container.dart';
 import 'package:aquayar/features/payment/presentation/widgets/wave_painter.dart';
@@ -99,12 +100,12 @@ class _PaymentScreenState extends State<PaymentScreen>
                   builder: (context, state) {
                     return GestureDetector(
                       onTap: () {
-                        final OrderBloc bloc = context.read<OrderBloc>();
+                        final PaymentBloc bloc = context.read<PaymentBloc>();
                         final AquayarAuthUser user =
                             AquayarBox.getAquayarUser().values.last;
-                        bloc.add(OrderEventPayForOrder(
+                        bloc.add(PaymentEventStartPaymentProcess(
                           token: user.authToken!,
-                          orderId: widget.id,
+                          orderID: widget.id,
                         ));
                       },
                       child: const TotalAmountContainer(

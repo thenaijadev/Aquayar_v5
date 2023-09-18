@@ -19,6 +19,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       );
       response.fold((l) => emit(PaymentStateError(error: l)), (r) {
         emit(PaymentStatePaymentProcessStarted(paymentDetails: r));
+        print(r.toString());
       });
     });
   }
