@@ -150,6 +150,7 @@ class OrderProviderImplementation {
           headers: {"Authorization": "Bearer $token"},
         ),
       );
+      print(orderId);
       return right(response);
     } on DioException catch (e) {
       return left(e.response?.data);
@@ -180,17 +181,18 @@ class OrderProviderImplementation {
     required String orderId,
   }) async {
     try {
+      print(orderId);
       final response = await DioClient.instance.post(
         "${RoutesAndPaths.createOrder}/$orderId/pay",
         options: Options(
           headers: {"Authorization": "Bearer $token"},
         ),
       );
-      print(response);
+      print("$response");
       return right(response);
     } on DioException catch (e) {
       print(e.response?.data);
-      return left(e.response?.data);
+      return left("${e.response?.data}");
     } catch (e) {
       print(e.toString());
 

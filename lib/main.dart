@@ -7,6 +7,9 @@ import 'package:aquayar/features/auth/data/repos/auth_repo.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/data/repo/order_repository.dart';
+import 'package:aquayar/features/payment/bloc/payment_bloc.dart';
+import 'package:aquayar/features/payment/data/providers/payment_provider.dart';
+import 'package:aquayar/features/payment/data/repositories/payment_repository.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/data/providers/user_provider_implementation.dart';
 import 'package:aquayar/features/user/data/repos/user_repository.dart';
@@ -60,6 +63,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               UserBloc(UserRepository(provider: UserProviderImplementation())),
+        ),
+        BlocProvider(
+          create: (context) =>
+              PaymentBloc(PaymentRepository(PaymentProvider())),
         ),
       ],
       child: GestureDetector(

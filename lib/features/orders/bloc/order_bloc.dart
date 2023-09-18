@@ -75,19 +75,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         emit(const OrderStateOrderCanceled());
       });
     });
-    on<OrderEventPayForOrder>((event, emit) async {
-      emit(const OrderStatePayingForOrder());
-      final String token = event.token;
-      final String orderId = event.orderId;
-
-      final response = await repo.payForOrder(
-        orderId: orderId,
-        token: token,
-      );
-      response.fold((l) => emit(OrderStateError(error: l)), (r) {
-        emit(const OrderStateOrderPaymentMade());
-      });
-    });
 
     on<OrderEventCreateOrder>((event, emit) async {
       emit(OrderStateIsLoading());
@@ -121,7 +108,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           final OrderModel order = OrderModel.fromMap(r);
           final DriverModel driver = DriverModel.fromMap(r);
           print(driver.toString());
-          emit(OrderStateOrderDetailsRetrieved(order: order, driver: driver));
+          emit(OrderStateOrderDetailsRetrieved(
+            order: order.copyWith(id: state.order.orderId),
+            driver: driver,
+          ));
         });
       }
     });

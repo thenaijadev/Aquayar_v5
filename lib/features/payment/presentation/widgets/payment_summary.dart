@@ -1,4 +1,4 @@
-import 'package:aquayar/features/orders/presentation/widgets/payment_widgets/payment_data_row.dart';
+import 'package:aquayar/features/payment/presentation/widgets/payment_data_row.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSummary extends StatelessWidget {
