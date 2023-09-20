@@ -30,4 +30,5 @@ class Routes {
   static const String directionMap = '/directionMap';
   static const String orderCancellingLoading = '/orderCancellingLoading';
   static const String payment = '/payment';
+  static const String webview = '/webview';
 }

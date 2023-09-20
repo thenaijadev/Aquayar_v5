@@ -20,6 +20,7 @@ import 'package:aquayar/features/orders/presentation/screens/order_canceling_scr
 import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
 import 'package:aquayar/features/locations/presentation/screens/rename_location.dart';
 import 'package:aquayar/features/payment/presentation/screens/payment_screen.dart';
+import 'package:aquayar/features/payment/presentation/screens/payment_web_view.dart';
 import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
 import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
@@ -174,6 +175,14 @@ class AppRouter {
       case Routes.orderCancellingLoading:
         return MaterialPageRoute(
           builder: (_) => const OrderCancelLoading(),
+        );
+      case Routes.webview:
+        var url = routeSettings.arguments as String;
+
+        return MaterialPageRoute(
+          builder: (_) => PaymentWebView(
+            url: url,
+          ),
         );
       default:
         return MaterialPageRoute(

@@ -59,6 +59,9 @@ dependencies:
   hydrated_bloc: ^9.1.2
   get_it: ^7.6.4
   flutter_paystack: ^1.0.7
+  webview_flutter: ^4.2.2
+  webview_flutter_android: ^3.9.3
+  connectivity_plus: ^4.0.1
 
 dev_dependencies:
   flutter_test:

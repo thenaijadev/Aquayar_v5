@@ -1,8 +1,9 @@
+import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
+import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
-import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/payment/bloc/payment_bloc.dart';
 import 'package:aquayar/features/payment/presentation/widgets/payment_summary.dart';
 import 'package:aquayar/features/payment/presentation/widgets/total_amount_container.dart';
@@ -96,26 +97,35 @@ class _PaymentScreenState extends State<PaymentScreen>
                   height: 40,
                 ),
                 const PaymentSummary(),
-                BlocBuilder<OrderBloc, OrderState>(
-                  builder: (context, state) {
-                    return GestureDetector(
-                      onTap: () {
-                        final PaymentBloc bloc = context.read<PaymentBloc>();
-                        final AquayarAuthUser user =
-                            AquayarBox.getAquayarUser().values.last;
-                        bloc.add(PaymentEventStartPaymentProcess(
-                          token: user.authToken!,
-                          orderID: widget.id,
-                        ));
-                      },
-                      child: const TotalAmountContainer(
-                        amount: "9000.82",
-                      ),
-                    );
-                  },
+                const TotalAmountContainer(
+                  amount: "9000.82",
                 ),
-                const SizedBox(
-                  height: 150,
+                const Spacer(),
+                BlocConsumer<PaymentBloc, PaymentState>(
+                  listener: (context, state) {
+                    if (state is PaymentStatePaymentProcessStarted) {
+                      Navigator.pushNamed(context, Routes.webview,
+                          arguments:
+                              state.paymentDetails.data?.authorizationUrl);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is PaymentStatePaymentProcessing
+                        ? const LoadingWidget()
+                        : GestureDetector(
+                            onTap: () {
+                              final PaymentBloc bloc =
+                                  context.read<PaymentBloc>();
+                              final AquayarAuthUser user =
+                                  AquayarBox.getAquayarUser().values.last;
+                              bloc.add(PaymentEventStartPaymentProcess(
+                                token: user.authToken!,
+                                orderID: widget.id,
+                              ));
+                            },
+                            child:
+                                Image.asset("assets/images/continue_blue.png"));
+                  },
                 ),
                 const SizedBox(
                   height: 10,
