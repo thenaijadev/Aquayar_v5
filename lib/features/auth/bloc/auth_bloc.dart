@@ -68,7 +68,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
 
     on<AuthEventLogIn>(
       (event, emit) async {
-        emit(GoogleAuthStateIsLoading());
+        emit(AuthStateIsLoading());
 
         final String email = event.email;
         final String password = event.password;

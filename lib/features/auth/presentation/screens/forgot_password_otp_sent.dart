@@ -6,7 +6,6 @@ import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
 import 'package:aquayar/features/auth/bloc/auth_event.dart';
 import 'package:aquayar/features/auth/bloc/auth_state.dart';
-import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/presentation/widgets/blue_button.dart';
 
 import 'package:flutter/material.dart';
@@ -217,9 +216,9 @@ class _ForgotPasswordOtpSentState extends State<ForgotPasswordOtpSent> {
                 }
               },
               builder: (context, state) {
-                return state is UserStateIsLoading
+                return state is AuthStateIsLoading
                     ? const Padding(
-                        padding: EdgeInsets.only(top: 20.0),
+                        padding: EdgeInsets.only(bottom: 30.0),
                         child: LoadingWidget())
                     : otp?.length != 4
                         ? BlueBtn(

@@ -120,20 +120,28 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             fontSize: 14,
                           ),
                           onPressed: () {})
-                      : GestureDetector(
-                          onTap: () {
-                            final formIsValid =
-                                formKey.currentState?.validate();
-                            if (formIsValid!) {
-                              bloc.add(AuthEventForgotPassword(
-                                  email: formfieldkey_1.currentState?.value));
-                            }
+                      : BlocBuilder<AuthBloc, AuthState>(
+                          builder: (context, state) {
+                            return state is AuthStateIsLoading
+                                ? const LoadingWidget()
+                                : GestureDetector(
+                                    onTap: () {
+                                      final formIsValid =
+                                          formKey.currentState?.validate();
+                                      if (formIsValid!) {
+                                        bloc.add(AuthEventForgotPassword(
+                                            email: formfieldkey_1
+                                                .currentState?.value));
+                                      }
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 45),
+                                      child: Image.asset(
+                                          "assets/images/send_instruction_blue.png"),
+                                    ));
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 45),
-                            child: Image.asset(
-                                "assets/images/send_instruction_blue.png"),
-                          ));
+                        );
             }),
           )
         ],

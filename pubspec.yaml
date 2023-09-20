@@ -56,12 +56,12 @@ dependencies:
   supabase_flutter: ^1.10.13
   flutter_appauth: ^6.0.2
   crypto: ^3.0.3
-  hydrated_bloc: ^9.1.2
   get_it: ^7.6.4
   flutter_paystack: ^1.0.7
   webview_flutter: ^4.2.2
   webview_flutter_android: ^3.9.3
   connectivity_plus: ^4.0.1
+  hydrated_bloc: ^9.1.2
 
 dev_dependencies:
   flutter_test:

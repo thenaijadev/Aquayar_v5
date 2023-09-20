@@ -41,9 +41,14 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.white,
-          leading: Image.asset(
-            "assets/images/arrow_left_small.png",
-            width: 24,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Image.asset(
+              "assets/images/arrow_left_small.png",
+              width: 24,
+            ),
           )),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
