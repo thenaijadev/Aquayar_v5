@@ -1,5 +1,6 @@
 import 'package:aquayar/config/validator/validator.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
+import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
@@ -216,14 +217,21 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 42),
-            child: GestureDetector(
-              onTap: () {
-                authBloc.add(const AuthEventSignInWithGoogle());
-              },
-              child: Image.asset("assets/images/google_login.png"),
-            ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return state is GoogleAuthStateIsLoading
+                  ? const LoadingWidget()
+                  : Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 42),
+                      child: GestureDetector(
+                        onTap: () {
+                          authBloc.add(const AuthEventSignInWithGoogle());
+                        },
+                        child: Image.asset("assets/images/google_login.png"),
+                      ),
+                    );
+            },
           ),
           defaultTargetPlatform == TargetPlatform.iOS
               ? Padding(

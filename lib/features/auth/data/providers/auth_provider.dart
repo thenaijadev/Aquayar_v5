@@ -92,7 +92,7 @@ class AuthProviderImpl implements AuthProvider {
   }) async {
     try {
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
-
+      print("object");
       final response = await DioClient.instance.patch(
         RoutesAndPaths.user,
         data: {"password": password, "passwordConfirmation": confirmPassword},
@@ -131,7 +131,7 @@ class AuthProviderImpl implements AuthProvider {
 
       return right(response!);
     } on DioException catch (e) {
-      return left(e.response?.data.to);
+      return left("${e.response?.data}");
     } catch (e) {
       return left(e.toString());
     }

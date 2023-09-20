@@ -60,7 +60,7 @@ class CallToAction extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return state is AuthStateIsLoading
+              return state is GoogleAuthStateIsLoading
                   ? const LoadingWidget()
                   : GestureDetector(
                       onTap: () {

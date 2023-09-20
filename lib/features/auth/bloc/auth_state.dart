@@ -11,6 +11,8 @@ class AuthStateInitial extends AuthState {}
 
 class AuthStateIsLoading extends AuthState {}
 
+class GoogleAuthStateIsLoading extends AuthState {}
+
 class AuthStateError extends AuthState {
   final String message;
   AuthStateError({

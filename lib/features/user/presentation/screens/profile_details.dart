@@ -91,7 +91,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: TextWidget(
-                  text: "Hey, $name👑",
+                  text: "$name👑",
                   color: AppColors.titleBlack,
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
