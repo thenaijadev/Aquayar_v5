@@ -14,6 +14,7 @@ abstract class AuthProvider {
   EitherMap forgotPassord({required String email});
   EitherMap changePassword({
     required String password,
+    required String resetToken,
     required String confirmPassword,
   });
 

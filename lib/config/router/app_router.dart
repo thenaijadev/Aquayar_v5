@@ -95,8 +95,12 @@ class AppRouter {
         );
 
       case Routes.createNewPassword:
+        var data = routeSettings.arguments as String;
+
         return MaterialPageRoute(
-          builder: (_) => const CreateNewPasswordScreen(),
+          builder: (_) => CreateNewPasswordScreen(
+            resetToken: data,
+          ),
         );
       case Routes.home:
         return MaterialPageRoute(

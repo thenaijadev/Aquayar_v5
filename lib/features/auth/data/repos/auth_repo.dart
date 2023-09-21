@@ -71,9 +71,11 @@ class AuthRepo {
   EitherMap changePassword({
     required String password,
     required String confirmPassword,
+    required String resetToken,
   }) async {
     return provider.changePassword(
       password: password,
+      resetToken: resetToken,
       confirmPassword: confirmPassword,
     );
   }

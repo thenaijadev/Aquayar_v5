@@ -12,11 +12,11 @@ class AuthEventInitialize extends AuthEvent {
 class AuthEventChangePassword extends AuthEvent {
   final String password;
   final String confirmPassword;
-
-  const AuthEventChangePassword({
-    required this.password,
-    required this.confirmPassword,
-  });
+  final String resetToken;
+  const AuthEventChangePassword(
+      {required this.password,
+      required this.confirmPassword,
+      required this.resetToken});
 }
 
 class AuthEventLogIn extends AuthEvent {

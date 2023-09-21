@@ -4,7 +4,6 @@ import 'package:aquayar/config/network/dio_exception.dart';
 import 'package:aquayar/config/network/typedef.dart';
 import 'package:aquayar/features/auth/data/interfaces/auth_provider.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
-import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/auth/data/providers/super_base_auth_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -86,25 +85,26 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  EitherMap changePassword({
-    required String password,
-    required String confirmPassword,
-  }) async {
+  EitherMap changePassword(
+      {required String password,
+      required String confirmPassword,
+      required String resetToken}) async {
     try {
-      final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
-
-      final response = await DioClient.instance.patch(
-        RoutesAndPaths.resetPassword,
+      final response = await DioClient.instance.post(
+        "${RoutesAndPaths.resetPassword}/$resetToken",
         data: {"password": password, "passwordConfirmation": confirmPassword},
         options: Options(
-          headers: {"Authorization": "Bearer ${user.authToken}"},
+          headers: {"Authorization": "Bearer $resetToken"},
         ),
       );
+
       return right(response);
     } on DioException catch (e) {
       final errorMessage = DioExceptionClass.fromDioError(e).toString();
+      print(errorMessage);
       return left(errorMessage);
     } catch (e) {
+      print({"error": e.toString()});
       return left(e.toString());
     }
   }

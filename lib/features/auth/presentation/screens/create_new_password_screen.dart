@@ -13,10 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
-  const CreateNewPasswordScreen({
-    super.key,
-  });
-
+  const CreateNewPasswordScreen({super.key, required this.resetToken});
+  final String resetToken;
   @override
   State<CreateNewPasswordScreen> createState() =>
       _CreateNewPasswordScreenState();
@@ -173,6 +171,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                                     formKey.currentState?.validate();
                                 if (formIsValid!) {
                                   authBloc.add(AuthEventChangePassword(
+                                      resetToken: widget.resetToken,
                                       password:
                                           formfieldkey_1.currentState?.value,
                                       confirmPassword:

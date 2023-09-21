@@ -5,7 +5,6 @@ import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
-import 'package:aquayar/features/auth/bloc/auth_event.dart';
 import 'package:aquayar/features/auth/bloc/auth_state.dart';
 import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/input_field_widget.dart';
 
@@ -158,11 +157,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     formKey.currentState?.validate();
 
                                 if (formIsValid!) {
-                                  authBloc.add(AuthEventChangePassword(
-                                      password:
-                                          formfieldkey_1.currentState?.value,
-                                      confirmPassword:
-                                          formfieldkey_2.currentState?.value));
+                                  // authBloc.add(AuthEventChangePassword(
+                                  //     password:
+                                  //         formfieldkey_1.currentState?.value,
+                                  //     confirmPassword:
+                                  //         formfieldkey_2.currentState?.value));
                                 }
                               },
                               child: Image.asset(
