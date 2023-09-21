@@ -92,9 +92,9 @@ class AuthProviderImpl implements AuthProvider {
   }) async {
     try {
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
-      print("object");
+
       final response = await DioClient.instance.patch(
-        RoutesAndPaths.user,
+        RoutesAndPaths.resetPassword,
         data: {"password": password, "passwordConfirmation": confirmPassword},
         options: Options(
           headers: {"Authorization": "Bearer ${user.authToken}"},
