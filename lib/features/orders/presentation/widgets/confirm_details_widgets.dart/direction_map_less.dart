@@ -1,3 +1,4 @@
+import 'package:aquayar/config/network/api_endpoint.dart';
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/help&Support/presentation/widgets/horizontal_line.dart';
@@ -5,6 +6,7 @@ import 'package:aquayar/features/orders/data/models/driver_model.dart';
 import 'package:aquayar/features/orders/data/models/order_model.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/outlined_container.dart';
 import 'package:flutter/material.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class DirectionMapScreenLess extends StatefulWidget {
   const DirectionMapScreenLess(
@@ -22,15 +24,35 @@ class DirectionMapScreenLess extends StatefulWidget {
 }
 
 class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
+  _connectSocket() {
+    final IO.Socket socket = IO.io(
+        RoutesAndPaths.baseUrl,
+        IO.OptionBuilder().setTransports(['websocket']).setExtraHeaders({
+          'Authorization': 'Bearer ${widget.data["token"]}',
+        }).build());
+    socket.onConnect((data) {
+      print("Connection established:$data");
+      socket.emit('userConnection');
+      socket.on("userConnection", (data) => print(data));
+    });
+    socket.onConnectError((data) => print("Connection error: $data"));
+    socket.onDisconnect((data) => print("Socket.o disconnected"));
+  }
+
+  @override
+  void initState() {
+    print(widget.data);
+    _connectSocket();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     String formatTime(String input) {
-      List<String> parts =
-          input.split(' '); // Split the input string into parts
-      String hours = parts[0]; // Get the hours part
-      String mins = parts[2]; // Get the mins part
+      List<String> parts = input.split(' ');
+      String hours = parts[0];
+      String mins = parts[2];
 
-      // Construct the formatted string
       String formattedTime = '${hours}h ${mins}m';
 
       return formattedTime;
