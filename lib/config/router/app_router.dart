@@ -1,34 +1,4 @@
-import 'package:aquayar/features/auth/presentation/screens/change_password_screen_from_menu.dart';
-import 'package:aquayar/features/auth/presentation/screens/create_new_password_screen.dart';
-import 'package:aquayar/features/auth/presentation/screens/forgot_password_otp_sent.dart';
-import 'package:aquayar/config/router/routes.dart';
-import 'package:aquayar/features/auth/presentation/screens/landing_screen.dart';
-import 'package:aquayar/features/auth/presentation/screens/login_screen.dart';
-import 'package:aquayar/features/auth/presentation/screens/registration_screen.dart';
-import 'package:aquayar/features/auth/presentation/screens/reset_password.dart';
-import 'package:aquayar/features/chat/presentation/screens/chat_screen.dart';
-import 'package:aquayar/features/delete_account/presentation/screens/delete_account.dart';
-import 'package:aquayar/features/help&Support/presentation/screens/help_and_support.dart';
-import 'package:aquayar/features/help&Support/presentation/screens/help_and_support_no_tickets.dart';
-import 'package:aquayar/features/locations/data/models/address.dart';
-import 'package:aquayar/features/locations/presentation/screens/edit_location_screen.dart';
-import 'package:aquayar/features/orders/presentation/screens/confirm_details.dart';
-import 'package:aquayar/features/orders/presentation/screens/home.dart';
-import 'package:aquayar/features/locations/presentation/screens/locations.dart';
-import 'package:aquayar/features/orders/presentation/screens/menu.dart';
-import 'package:aquayar/features/orders/presentation/screens/order_canceling_screen.dart';
-import 'package:aquayar/features/orders/presentation/screens/order_water.dart';
-import 'package:aquayar/features/locations/presentation/screens/rename_location.dart';
-import 'package:aquayar/features/payment/presentation/screens/payment_screen.dart';
-import 'package:aquayar/features/payment/presentation/screens/payment_web_view.dart';
-import 'package:aquayar/features/user/presentation/screens/edit_profile_screen.dart';
-import 'package:aquayar/features/user/presentation/screens/gender_screen.dart';
-import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
-import 'package:aquayar/features/user/presentation/screens/phone_verification_screen.dart';
-import 'package:aquayar/features/user/presentation/screens/profile_details.dart';
-import 'package:aquayar/features/user/presentation/screens/registration_done_screen.dart';
-import 'package:aquayar/features/user/presentation/screens/user_water_tank_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:aquayar/config/exports/exports.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -187,6 +157,10 @@ class AppRouter {
           builder: (_) => PaymentWebView(
             url: url,
           ),
+        );
+      case Routes.createNewPasswordSuccessful:
+        return MaterialPageRoute(
+          builder: (_) => const PasswordChangeSuccessfulScreen(),
         );
       default:
         return MaterialPageRoute(

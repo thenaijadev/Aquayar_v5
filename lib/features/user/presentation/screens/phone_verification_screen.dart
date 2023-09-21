@@ -5,6 +5,7 @@ import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/input_field_widget.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
+import 'package:aquayar/features/user/presentation/screens/otp_screen.dart';
 import 'package:aquayar/features/user/presentation/widgets/change_country.dart';
 
 import 'package:country_picker/country_picker.dart';
@@ -192,6 +193,6 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
   }
 }
 
-String formatPhoneNumber(String number, String countryCode) {
-  return "+$countryCode-${number.substring(1, 4)}-${number.substring(4, 7)}-${number.substring(7, number.length)}";
-}
+// String formatPhoneNumber(String number, String countryCode) {
+//   return "+$countryCode-${number.substring(1, 4)}-${number.substring(4, 7)}-${number.substring(7, number.length)}";
+// }
