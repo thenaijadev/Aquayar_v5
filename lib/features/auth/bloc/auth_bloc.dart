@@ -116,6 +116,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
 
         response.fold((l) {
           emit(AuthStateError(message: l));
+          print(l);
         }, (r) {
           emit(AuthStatePasswordChanged());
         });

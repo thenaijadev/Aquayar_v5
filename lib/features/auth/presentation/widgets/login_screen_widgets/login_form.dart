@@ -13,7 +13,6 @@ import 'package:aquayar/features/auth/presentation/widgets/login_screen_widgets/
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginForm extends StatefulWidget {
@@ -163,10 +162,7 @@ class _LoginFormState extends State<LoginForm> {
               return state is AuthStateIsLoading
                   ? const Padding(
                       padding: EdgeInsets.only(top: 20.0),
-                      child: SpinKitSpinningLines(
-                        color: Color.fromARGB(255, 4, 136, 231),
-                        size: 40.0,
-                      ),
+                      child: LoadingWidget(),
                     )
                   : emailState! && passwordState!
                       ? Padding(

@@ -1,4 +1,5 @@
 import 'package:aquayar/config/router/routes.dart';
+import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
@@ -9,7 +10,6 @@ import 'package:clay_containers/clay_containers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -80,10 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state) {
               if (state is UserStateIsLoading) {
                 return const Center(
-                  child: SpinKitSpinningLines(
-                    color: Color.fromARGB(255, 4, 136, 231),
-                    size: 40.0,
-                  ),
+                  child: LoadingWidget(),
                 );
               } else if (state is OrderStateOrderRetrieved) {
                 return SingleChildScrollView(

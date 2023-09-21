@@ -177,7 +177,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 // if (state is AuthStateIsLoading) {
                 //   return const Padding(
                 //     padding: EdgeInsets.only(top: 20.0),
-                //     child: SpinKitSpinningLines(
+                //     child: LoadingWidget(
                 //       color: Color.fromARGB(255, 4, 136, 231),
                 //       size: 40.0,
                 //     ),

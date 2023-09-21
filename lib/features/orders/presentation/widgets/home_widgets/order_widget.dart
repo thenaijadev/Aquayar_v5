@@ -1,4 +1,5 @@
 import 'package:aquayar/config/router/routes.dart';
+import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
@@ -9,7 +10,6 @@ import 'package:aquayar/features/orders/presentation/widgets/home_widgets/show_p
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/tab_widget.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class OrderWidget extends StatefulWidget {
   const OrderWidget({super.key, required this.orders});
@@ -131,10 +131,7 @@ class _OrderWidgetState extends State<OrderWidget> {
         isLoading
             ? const Padding(
                 padding: EdgeInsets.only(top: 20.0),
-                child: SpinKitSpinningLines(
-                  color: Color.fromARGB(255, 4, 136, 231),
-                  size: 40.0,
-                ),
+                child: LoadingWidget(),
               )
             : SizedBox(
                 height: 300,

@@ -9,9 +9,10 @@ class LoadingWidget extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.only(top: 20.0),
       child: Center(
-        child: SpinKitSpinningLines(
+        child: SpinKitWaveSpinner(
           color: Color.fromARGB(255, 4, 136, 231),
-          size: 40.0,
+          waveColor: Color.fromARGB(255, 4, 136, 231),
+          size: 70.0,
         ),
       ),
     );
