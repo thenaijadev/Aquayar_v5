@@ -4,17 +4,17 @@ import 'package:aquayar/core/widgets/loading_widget.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
+import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/payment/bloc/payment_bloc.dart';
 import 'package:aquayar/features/payment/presentation/widgets/payment_summary.dart';
 import 'package:aquayar/features/payment/presentation/widgets/total_amount_container.dart';
 import 'package:aquayar/features/payment/presentation/widgets/wave_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_paystack/flutter_paystack.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key, required this.id});
-  final String id;
+  const PaymentScreen({super.key, this.id});
+  final String? id;
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -22,8 +22,6 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen>
     with SingleTickerProviderStateMixin {
-  var publicKey = '[YOUR_PAYSTACK_PUBLIC_KEY]';
-  final plugin = PaystackPlugin();
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -41,7 +39,6 @@ class _PaymentScreenState extends State<PaymentScreen>
         curve: Curves.easeInOut,
       ),
     );
-    plugin.initialize(publicKey: publicKey);
   }
 
   @override
@@ -112,19 +109,43 @@ class _PaymentScreenState extends State<PaymentScreen>
                   builder: (context, state) {
                     return state is PaymentStatePaymentProcessing
                         ? const LoadingWidget()
-                        : GestureDetector(
-                            onTap: () {
-                              final PaymentBloc bloc =
-                                  context.read<PaymentBloc>();
-                              final AquayarAuthUser user =
-                                  AquayarBox.getAquayarUser().values.last;
-                              bloc.add(PaymentEventStartPaymentProcess(
-                                token: user.authToken!,
-                                orderID: widget.id,
-                              ));
+                        : BlocBuilder<OrderBloc, OrderState>(
+                            builder: (context, state) {
+                              if (state is OrderStateOrderDetailsRetrieved) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      final PaymentBloc bloc =
+                                          context.read<PaymentBloc>();
+                                      final AquayarAuthUser user =
+                                          AquayarBox.getAquayarUser()
+                                              .values
+                                              .last;
+                                      bloc.add(PaymentEventStartPaymentProcess(
+                                        token: user.authToken!,
+                                        orderID: state.order.id,
+                                      ));
+                                    },
+                                    child: Image.asset(
+                                        "assets/images/continue_blue.png"));
+                              } else {
+                                return GestureDetector(
+                                    onTap: () {
+                                      final PaymentBloc bloc =
+                                          context.read<PaymentBloc>();
+                                      final AquayarAuthUser user =
+                                          AquayarBox.getAquayarUser()
+                                              .values
+                                              .last;
+                                      bloc.add(PaymentEventStartPaymentProcess(
+                                        token: user.authToken!,
+                                        orderID: "",
+                                      ));
+                                    },
+                                    child: Image.asset(
+                                        "assets/images/continue_blue.png"));
+                              }
                             },
-                            child:
-                                Image.asset("assets/images/continue_blue.png"));
+                          );
                   },
                 ),
                 const SizedBox(

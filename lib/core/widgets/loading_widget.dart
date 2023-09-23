@@ -12,7 +12,7 @@ class LoadingWidget extends StatelessWidget {
         child: SpinKitWaveSpinner(
           color: Color.fromARGB(255, 4, 136, 231),
           waveColor: Color.fromARGB(255, 4, 136, 231),
-          size: 70.0,
+          size: 60.0,
         ),
       ),
     );

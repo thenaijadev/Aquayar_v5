@@ -1,5 +1,6 @@
 import 'package:aquayar/config/router/app_router.dart';
 import 'package:aquayar/config/superbase/provider/super_base_provoder_impl.dart';
+import 'package:aquayar/core/services/init_dependency.dart';
 import 'package:aquayar/core/services/locator.dart';
 import 'package:aquayar/features/auth/bloc/auth_bloc.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
@@ -10,13 +11,13 @@ import 'package:aquayar/features/orders/data/repo/order_repository.dart';
 import 'package:aquayar/features/payment/bloc/payment_bloc.dart';
 import 'package:aquayar/features/payment/data/providers/payment_provider.dart';
 import 'package:aquayar/features/payment/data/repositories/payment_repository.dart';
-import 'package:aquayar/features/socket/bloc/socket_bloc.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:aquayar/features/user/data/providers/user_provider_implementation.dart';
 import 'package:aquayar/features/user/data/repos/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -69,15 +70,13 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               PaymentBloc(PaymentRepository(PaymentProvider())),
         ),
-        BlocProvider(
-          create: (context) => SocketBloc(),
-        ),
       ],
       child: GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: MaterialApp(
+        child: GetMaterialApp(
+          initialBinding: InitializeDependencies(),
           theme: ThemeData(textTheme: const TextTheme()),
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

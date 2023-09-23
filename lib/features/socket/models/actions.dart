@@ -1,5 +1,5 @@
-class Action {}
+class SocketAction {}
 
-class OrderAccepted extends Action {}
+class OrderAccepted extends SocketAction {}
 
-class OrderRejected extends Action {}
+class OrderRejected extends SocketAction {}
