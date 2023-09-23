@@ -50,7 +50,7 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
 
     controller.connectToHost();
     controller.dispatchOrder(
-        orderId: widget.order.id, driverId: widget.driver.id);
+        context: context, orderId: widget.order.id, driverId: widget.driver.id);
     super.initState();
   }
 

@@ -1,13 +1,16 @@
 import 'package:aquayar/config/exports/exports.dart';
 import 'package:aquayar/config/network/api_endpoint.dart';
+import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_auth_user.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
+import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/socket/models/actions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketProvider extends GetxController {
-  late Rx<SocketAction?> _action;
+  late Rx<String?> _action;
 
   static AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
 
@@ -24,13 +27,13 @@ class SocketProvider extends GetxController {
 
   @override
   void onReady() {
-    print("Action");
-    _action = Rx<SocketAction?>(SocketAction());
+    _action = Rx<String?>("Waiting");
     ever(_action, _setScreen);
     super.onReady();
   }
 
   _setScreen(action) {
+    print(action);
     if (action is OrderAccepted) {
       Get.offAll(() => const PaymentScreen());
     } else {
@@ -64,19 +67,23 @@ class SocketProvider extends GetxController {
     return isConnected;
   }
 
-  void dispatchOrder({required String driverId, required String orderId}) {
+  void dispatchOrder(
+      {required String driverId,
+      required String orderId,
+      required BuildContext context}) {
     IO.Socket socket = initializeSocket(authToken: token!);
-
-    String action = "";
 
     socket.emit("orderCreation", {"driverId": driverId, "orderId": orderId});
 
     socket.on("orderAction", (data) {
-      if (data["action"] == "accept") {
-        _action = OrderAccepted().obs;
+      _action = Rx<String?>(data["action"]);
+      if (data["action"] == "reject") {
+        final OrderBloc bloc = context.read<OrderBloc>();
+        InfoSnackBar.showErrorSnackBar(context,
+            "There is no diver to take your order. Please make another order");
+        bloc.add(OrderEventCancelOrder(token: token!, orderId: orderId));
       } else {
-        print(data["action"]);
-        _action = OrderRejected().obs;
+        Get.offAll(() => const PaymentScreen());
       }
       print({"this is the data": data});
     });
