@@ -53,11 +53,11 @@ class SocketProvider extends GetxController {
       isConnected = false;
       print("Connection error: $data");
     });
-    socket.emit(
-      "userConnection",
-    );
+    socket.emit("userConnection", {"userId": user.id});
+    // socket.emit("userDisconnection");
+
     socket.on("userConnected", (data) {
-      print(data);
+      print("Socket Connected: $data");
     });
 
     socket.onDisconnect((data) {
@@ -84,6 +84,7 @@ class SocketProvider extends GetxController {
         bloc.add(OrderEventCancelOrder(token: token!, orderId: orderId));
       } else {
         Get.offAll(() => const PaymentScreen());
+        print({"this is the data": data});
       }
       print({"this is the data": data});
     });

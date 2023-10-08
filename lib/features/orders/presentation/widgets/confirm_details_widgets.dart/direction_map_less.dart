@@ -48,7 +48,6 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
     //     orderId: widget.order.id, driverId: widget.driver.id));
     SocketProvider controller = Get.find<SocketProvider>();
 
-    controller.connectToHost();
     controller.dispatchOrder(
         context: context, orderId: widget.order.id, driverId: widget.driver.id);
     super.initState();

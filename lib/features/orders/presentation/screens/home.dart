@@ -5,11 +5,13 @@ import 'package:aquayar/features/locations/data/models/address.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/no_order_widget.dart';
 import 'package:aquayar/features/orders/presentation/widgets/home_widgets/order_widget.dart';
+import 'package:aquayar/features/socket/providers/socket_provider.dart';
 import 'package:aquayar/features/user/bloc/bloc/user_bloc.dart';
 import 'package:clay_containers/clay_containers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     final OrderBloc orderBloc = context.read<OrderBloc>();
     orderBloc.add(OrderEventGetOrders());
+    SocketProvider controller = Get.find<SocketProvider>();
 
+    controller.connectToHost();
     super.initState();
   }
 

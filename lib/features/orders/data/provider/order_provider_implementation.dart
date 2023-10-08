@@ -36,7 +36,12 @@ class OrderProviderImplementation {
   }) async {
     try {
       final AquayarAuthUser user = AquayarBox.getAquayarUser().values.last;
-
+      print({
+        "waterSize": waterSize,
+        "longitude": longitude,
+        "latitude": latitude,
+        'user': user.authToken
+      });
       final response = await DioClient.instance.post(
         RoutesAndPaths.orderInit,
         data: {
@@ -53,8 +58,10 @@ class OrderProviderImplementation {
       final Driver driver = Driver.fromMap(driverData);
       return right(driver);
     } on DioException catch (e) {
+      print(e);
       return left(e.toString());
     } catch (e) {
+      print(e);
       return left(e.toString());
     }
   }

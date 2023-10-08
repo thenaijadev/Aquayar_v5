@@ -1,6 +1,7 @@
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';
 import 'package:aquayar/core/widgets/loading_widget.dart';
+import 'package:aquayar/core/widgets/snackbar.dart';
 import 'package:aquayar/core/widgets/text_widget.dart';
 import 'package:aquayar/features/auth/data/models/aquayar_user_box.dart';
 import 'package:aquayar/features/orders/bloc/order_bloc.dart';
@@ -371,7 +372,7 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
             listener: (context, state) {
               final AquayarAuthUser user =
                   AquayarBox.getAquayarUser().values.last;
-
+              print(state);
               if (state is OrderStateGetNearestDriverFound) {
                 Navigator.pushNamed(context, Routes.confirmDetails, arguments: {
                   "address": controller.text,
@@ -380,7 +381,7 @@ class _OrderWaterState extends State<OrderWater> with TickerProviderStateMixin {
                   "token": user.authToken,
                 });
               } else if (state is OrderStateGetNearestDiverError) {
-                // InfoSnackBar.showErrorSnackBar(context, state.error);
+                InfoSnackBar.showErrorSnackBar(context, state.error);
               }
             },
             builder: (context, state) {

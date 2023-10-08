@@ -45,6 +45,7 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
   setUp();
+
   runApp(const MyApp());
 }
 
