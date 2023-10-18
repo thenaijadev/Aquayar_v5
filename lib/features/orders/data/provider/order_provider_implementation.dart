@@ -58,7 +58,7 @@ class OrderProviderImplementation {
       final Driver driver = Driver.fromMap(driverData);
       return right(driver);
     } on DioException catch (e) {
-      print(e);
+      print({"error": e});
       return left(e.toString());
     } catch (e) {
       print(e);
