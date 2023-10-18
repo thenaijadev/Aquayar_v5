@@ -33,8 +33,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AuthBloc authBloc = context.watch<AuthBloc>();
-
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(

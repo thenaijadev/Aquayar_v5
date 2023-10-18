@@ -1,4 +1,3 @@
-import 'package:aquayar/config/logger/logger.dart';
 import 'package:aquayar/config/router/routes.dart';
 import 'package:aquayar/config/validator/validator.dart';
 import 'package:aquayar/core/constants/app_colors.dart/app_colors.dart';

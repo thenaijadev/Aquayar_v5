@@ -55,7 +55,7 @@ class LocationProvider {
         logger.e('HTTP request failed with status: ${response.statusCode}');
       }
     } catch (e) {
-      logger.e(e.toString());
+      logger.e("Here: ${e.toString()}");
     }
     return null;
   }
