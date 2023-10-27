@@ -91,7 +91,7 @@ class _MenuState extends State<Menu> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: user.displayName!,
+                          text: user.displayName ?? "Anonymous",
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
