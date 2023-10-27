@@ -65,6 +65,7 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
       return formattedTime;
     }
 
+    String image = widget.driver.selfieImage ?? "assets/images/head.png";
     return OutlinedContainer(
       color: Colors.white,
       borderRadius: 24,
@@ -133,7 +134,7 @@ class _DirectionMapScreenLessState extends State<DirectionMapScreenLess> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           border: Border.all(width: 4, color: Colors.white)),
-                      child: Image.asset("assets/images/head.png"),
+                      child: Image.network(image),
                     ),
                     const SizedBox(
                       width: 5,

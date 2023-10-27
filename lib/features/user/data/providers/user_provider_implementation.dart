@@ -36,6 +36,7 @@ class UserProviderImplementation extends UserProvider {
       return right(user);
     } on DioException catch (e) {
       final message = DioExceptionClass.fromDioError(e).errorMessage;
+      print(message);
       return left(message);
     } catch (e) {
       return left(e.toString());
